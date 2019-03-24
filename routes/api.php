@@ -14,8 +14,16 @@ use Illuminate\Http\Request;
 */
 
 // basic route to get pineapples
-Route::get('/ananas', 'ananasController@show');
+Route::get('/ananas', 'AnanasController@show');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::prefix('locations')->group(function () {
+    Route::get('{person}', 'LocationHistoryController@index');
+});
+
+Route::prefix('texts')->group(function() {
+    Route::get('{person}', 'TextMessageController@index');
 });
