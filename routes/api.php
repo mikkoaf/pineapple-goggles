@@ -22,6 +22,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::prefix('v2')->group(function () {
     // API V2
+    Route::post('login', 'UserController@login');
+    Route::post('register', 'UserController@register');
+    Route::group(['middleware' => 'auth:api'], function(){
+        Route::post('details', 'UserController@details');
+    });
+
     Route::prefix('locations')->group(function () {
         Route::get('/{person}', 'LocationHistoryController@index');
     });
@@ -33,14 +39,8 @@ Route::prefix('v2')->group(function () {
         return 'hi';
     });
 
-    Route::post('login', 'UserController@login');
-    Route::post('register', 'UserController@register');
-    
-    Route::group(['middleware' => 'auth:api'], function(){
-    Route::post('details', 'UserController@details');
 
 });
-
 // Legacy API
 Route::prefix('v1')->group(function () {
     // API V1
@@ -57,3 +57,4 @@ Route::prefix('v1')->group(function () {
         });
     });
 });
+
