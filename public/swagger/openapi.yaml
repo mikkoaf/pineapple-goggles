@@ -1,1 +1,30 @@
 openapi: 3.0.0
+
+info:
+  title: Pineapple API
+  description: Endpoints for providing text messages connected to location history
+  version: 0.0.2
+
+servers:
+  - url: http://mikko.af
+    description: Personal production server
+
+paths:
+  /locations/{personId}:
+    get:
+      summary: Returns locations by requested person ID.
+      parameters:
+        - name: personId
+          in: path
+          required: true
+          description: Dialogue person ID.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: OK
+
+
+
