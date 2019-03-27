@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use app\Http\Controllers\api\v2\LocationHistoryController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,11 +29,11 @@ Route::prefix('v2')->group(function () {
     });
 
     Route::prefix('locations')->group(function () {
-        Route::get('/{person}', 'LocationHistoryController@index');
+        Route::get('/{person}', 'api\v2\LocationHistoryController@index');
     });
 
     Route::prefix('texts')->group(function() {
-        Route::get('/{person}', 'TextMessageController@index');
+        Route::get('/{person}', 'api\v2\TextMessageController@index');
     });
     Route::get('/hello', function() {
         return 'hi';
