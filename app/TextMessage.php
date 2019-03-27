@@ -17,4 +17,13 @@ class TextMessage extends Model
         'connected',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    public function dialoguePerson()
+    {
+        return $this->belongsTo('App\DialoguePerson');
+    }
 }

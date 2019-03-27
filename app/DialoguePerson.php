@@ -28,6 +28,11 @@ class DialoguePerson extends Model
 
     public function textMessages()
     {
-        return $this-hasMany('App\TextMessage');
+        return $this->hasMany('App\TextMessage');
+    }
+
+    public function textLocationRelations()
+    {
+        return $this->hasMany('App\TextLocation');
     }
 }
