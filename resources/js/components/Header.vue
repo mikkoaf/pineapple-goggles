@@ -1,10 +1,10 @@
 <template>
-...
+    <title>Vue</title>
 </template>
 
 <script>
     export default {
-        name: "Home"
+        name: "Header"
     }
 </script>
 
