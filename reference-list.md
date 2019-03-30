@@ -6,6 +6,7 @@ This document is for gathering all the reference material I found quite useful.
 
 [Swagger, basic structure](https://swagger.io/docs/specification/basic-structure/)
 
+[Generating ER diagram](https://github.com/beyondcode/laravel-er-diagram-generator)
 
 
 
