@@ -26,4 +26,9 @@ class TextMessage extends Model
     {
         return $this->belongsTo('App\DialoguePerson');
     }
+
+    public function textLocations()
+    {
+        return $this->belongsToMany('App\TextLocation');
+    }
 }

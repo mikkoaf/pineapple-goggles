@@ -24,4 +24,5 @@ class TextLocation extends Model
     {
         return $this->belongsTo('App\DialoguePerson');
     }
+
 }
