@@ -1,13 +1,10 @@
 <template>
-
-    <div>
-        hello there
-    </div>
+    
 </template>
 
 <script>
     export default {
-        name: "Home"
+        name: "TextLog"
     }
 </script>
 
