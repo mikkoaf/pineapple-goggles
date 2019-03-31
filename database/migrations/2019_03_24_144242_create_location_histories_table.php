@@ -19,9 +19,9 @@ class CreateLocationHistoriesTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('person_id');
             $table->foreign('person_id')->references('id')->on('dialogue_people')->onDelete('cascade');
-            $table->timestamp('timestamp');
-            $table->unsignedBigInteger('latitude');
-            $table->unsignedBigInteger('longitude');
+            $table->unsignedBigInteger('timestamp');
+            $table->decimal('latitude', 9,6);
+            $table->decimal('longitude',9,6);
             $table->timestamps();
         });
     }

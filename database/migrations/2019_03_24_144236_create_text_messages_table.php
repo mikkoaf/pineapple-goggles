@@ -24,7 +24,7 @@ class CreateTextMessagesTable extends Migration
             $table->unsignedBigInteger('person_id');
             $table->foreign('person_id')->references('id')->on('dialogue_people')->onDelete('cascade');
             $table->string('person_name');
-            $table->string('message');
+            $table->longText('message');
             $table->dateTime('message_sent');
             $table->enum('connected', ['false', 'true', 'tried']); // propably not needed
             $table->timestamps();
