@@ -29,11 +29,11 @@ Route::prefix('v2')->group(function () {
     });
 
     Route::prefix('locations')->group(function () {
-        Route::get('/{person}', 'api\v2\LocationHistoryController@index');
+        Route::get('/', 'api\v2\LocationHistoryController@index');
     });
 
     Route::prefix('texts')->group(function() {
-        Route::get('/{person}', 'api\v2\TextMessageController@index');
+        Route::get('/', 'api\v2\TextMessageController@index');
     });
     Route::get('/hello', function() {
         return 'hi';
