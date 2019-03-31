@@ -1,6 +1,11 @@
 DISABLE LOCAL SERVER
 
 vue SPA
+- map component
+- text box component
+- charts components
+- header component for future features
+
 https://www.youtube.com/watch?v=CiXCubwd5cM
 
 https://appdividend.com/2018/11/17/vue-laravel-crud-example-tutorial-from-scratch/

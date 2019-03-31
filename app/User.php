@@ -38,4 +38,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function dialoguePeople()
+    {
+        return $this->hasMany('App\DialoguePerson');
+    }
+
+    public function locationHistories()
+    {
+        return $this->hasMany('App\LocationHistory');
+    }
+
+    public function textMessages()
+    {
+        return $this->hasMany('App\TextMessage');
+    }
+
+    public function textLocationRelations()
+    {
+        return $this->hasMany('App\TextLocation');
+    }
 }

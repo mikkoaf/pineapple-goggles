@@ -27,9 +27,9 @@ class LocationHistory extends Model
         return $this->belongsTo('App\DialoguePerson');
     }
 
-    public function textMessages()
+    public function textLocation()
     {
-        return $this->belongsToMany('App\TextLocation');
+        return $this->belongsTo('App\TextLocation');
     }
 
 }

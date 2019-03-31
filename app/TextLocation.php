@@ -25,4 +25,14 @@ class TextLocation extends Model
         return $this->belongsTo('App\DialoguePerson');
     }
 
+    public function textMessage()
+    {
+        return $this->hasOne('App\TextMessage');
+    }
+
+    public function locationHistory()
+    {
+        return $this->hasOne('App\LocationHistory');
+    }
+
 }
