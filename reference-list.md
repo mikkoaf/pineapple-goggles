@@ -6,6 +6,8 @@ This document is for gathering all the reference material I found quite useful.
 
 [Swagger, basic structure](https://swagger.io/docs/specification/basic-structure/)
 
+[Swagger Getting Started](https://github.com/zircote/swagger-php/blob/master/docs/Getting-started.md)
+
 [Generating ER diagram](https://github.com/beyondcode/laravel-er-diagram-generator)
 
 
@@ -21,3 +23,4 @@ This document is for gathering all the reference material I found quite useful.
 
 [Passport Authentication](https://medium.com/techcompose/create-rest-api-in-laravel-with-authentication-using-passport-133a1678a876)
 
+[Eloquent Resources](https://laravel.com/docs/5.8/eloquent-resources)
