@@ -13,7 +13,8 @@ class TextMessageRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        // TODO: ie. if user owns the person_id, they are authorized
+        return true;
     }
 
     /**
