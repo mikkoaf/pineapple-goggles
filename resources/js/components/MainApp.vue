@@ -3,10 +3,13 @@
 
         <div class="container-fluid">
             <div class="row">
-                <header></header>
+                <header />
             </div>
             <div class="row">
                 <router-view></router-view>
+            </div>
+            <div class="row">
+                <google-map />
             </div>
         </div>
     </div>
@@ -14,10 +17,11 @@
 
 <script>
     import header from './Header.vue'
+    import GoogleMap from "./GoogleMap";
     export default {
         name: 'app',
         components:{
-            header
+            header, GoogleMap
         },
         mounted() {
             console.log('Component mounted.')

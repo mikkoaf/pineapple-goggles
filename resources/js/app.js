@@ -1,14 +1,21 @@
 require('./bootstrap');
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import VueLoader from 'vue-loader';
+//import VueLoader from 'vue-loader';
 import Vuex from 'vuex';
 import MainApp from './components/MainApp.vue';
+import * as VueGoogleMaps from "vue2-google-maps";
 import {routes} from './routes';
 
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
+Vue.use(VueGoogleMaps, {
+    load: {
+      key: "REPLACE-THIS-WITH-YOUR-KEY-FROM-ABOVE",
+      libraries: "places" // necessary for places input
+    }
+  });
 
 const router = new VueRouter({
     mode: 'history',

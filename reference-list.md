@@ -20,6 +20,7 @@ This document is for gathering all the reference material I found quite useful.
 
 [VUE from scratch](https://appdividend.com/2018/11/17/vue-laravel-crud-example-tutorial-from-scratch/)
 
+[VUE google maps](https://alligator.io/vuejs/vue-google-maps)
 
 [Passport Authentication](https://medium.com/techcompose/create-rest-api-in-laravel-with-authentication-using-passport-133a1678a876)
 

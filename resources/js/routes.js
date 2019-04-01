@@ -1,6 +1,5 @@
 import Home from './components/Home.vue';
 import Header from './components/Header.vue';
-import Map from './components/Map.vue';
 export const routes = [
   {
       name: 'Home',
@@ -12,9 +11,5 @@ export const routes = [
         path: '/',
         component: Header
     },
-    {
-        name: 'Map',
-        path: '/',
-        component: Map
-    },
+
 ];
