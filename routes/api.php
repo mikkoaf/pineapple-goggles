@@ -10,6 +10,7 @@ use app\Http\Controllers\api\v2\LocationHistoryController;
 | Here is where you can register API routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
+
 |
 */
 
@@ -41,20 +42,3 @@ Route::prefix('v2')->group(function () {
 
 
 });
-// Legacy API
-Route::prefix('v1')->group(function () {
-    // API V1
-    Route::prefix('resources')->group(function () {
-        Route::prefix('emojis')->group(function() {
-            Route::get('/next', 'EmojiController@index');
-        });
-        Route::prefix('locations')->group(function() {
-            Route::get('/', 'LocationsController@index');
-            Route::get('/next', 'LocationsController@next');
-        });
-        Route::prefix('messages')->group(function() {
-            Route::get('/', 'MessagesController@index');
-        });
-    });
-});
-
