@@ -161,6 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        
     
 
         /*
@@ -168,6 +169,8 @@ return [
          */
 
         Laravel\Passport\PassportServiceProvider::class,
+
+        L5Swagger\L5SwaggerServiceProvider::class,
             
     
         /*
