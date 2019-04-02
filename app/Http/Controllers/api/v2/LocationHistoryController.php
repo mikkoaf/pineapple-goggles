@@ -16,6 +16,36 @@ class LocationHistoryController extends Controller
      *      tags={"LocationHistory"},
      *      summary="Get a list of saved location information",
      *      description="Returns location history of a DialoguePerson",
+     *      @OA\Parameter(
+     *         name="person-id",
+     *         in="query",
+     *         description="Person id required for identification",
+     *         required=true,
+     *         explode=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *      @OA\Parameter(
+     *         name="timestamp",
+     *         in="query",
+     *         description="Timestamp for querying later history information",
+     *         required=false,
+     *         explode=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="limit",
+     *         in="query",
+     *         description="Limit the number of items per query",
+     *         required=false,
+     *         explode=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
      *      @OA\Response(
      *          response=200,
      *          description="successful operation"
