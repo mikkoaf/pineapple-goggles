@@ -1,21 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\api\v2;
+namespace App\Http\Controllers\api;
 
-use App\Http\Requests\LocationHistoryRequest;
-use App\Http\Resources\LocationHistoryResource;
-use App\LocationHistory;
+use App\Http\Requests\TextLocationRequest;
+use App\Http\Resources\TextLocationResource;
+use App\TextLocation;
 use App\Http\Controllers\Controller; 
 
-class LocationHistoryController extends Controller
+class TextLocationController extends Controller
 {
     /**
      * @OA\Get(
-     *      path="/api/v2/locations",
+     *      path="/api/text-locations",
      *      operationId="index",
-     *      tags={"LocationHistory"},
-     *      summary="Get a list of saved location information",
-     *      description="Returns location history of a DialoguePerson",
+     *      tags={"LocationHistory", "Text Messages"},
+     *      summary="Get a list of saved location information linked to text messages",
+     *      description="Returns text location history of a DialoguePerson",
      *      @OA\Parameter(
      *         name="person-id",
      *         in="query",
@@ -60,7 +60,7 @@ class LocationHistoryController extends Controller
      */
     public function index(LocationHistoryRequest $request)
     {
-        return LocationHistoryResource::collection(LocationHistory::where('person_id',
-                                                $request->input('person_id'))->paginate());
+        return TextLocationResource::collection(TextLocation::where('person_id',
+                                                $request->input('person-id'))->paginate());
     }
 }

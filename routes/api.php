@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use app\Http\Controllers\api\v2\LocationHistoryController;
+use app\Http\Controllers\api\LocationHistoryController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,24 +21,29 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('v2')->group(function () {
-    // API V2
-    Route::post('login', 'UserController@login');
-    Route::post('register', 'UserController@register');
-    Route::group(['middleware' => 'auth:api'], function(){
-        Route::post('details', 'UserController@details');
-    });
+// TODO: use passport for use authentication instead
+Route::post('login', 'UserController@login');
+Route::post('register', 'UserController@register');
 
-    Route::prefix('locations')->group(function () {
-        Route::get('/', 'api\v2\LocationHistoryController@index');
-    });
-
-    Route::prefix('texts')->group(function() {
-        Route::get('/', 'api\v2\TextMessageController@index');
-    });
-    Route::get('/hello', function() {
-        return 'hi';
-    });
-
-
+// 
+Route::group(['middleware' => 'auth:api'], function(){
+    Route::post('details', 'UserController@details');
 });
+
+Route::prefix('locations')->group(function () {
+    Route::get('/', 'api\LocationHistoryController@index');
+});
+
+Route::prefix('texts')->group(function() {
+    Route::get('/', 'api\TextMessageController@index');
+});
+
+Route::prefix('text-locations')->group(function () {
+    Route::get('/', 'api\TextLocationController@index');
+});
+Route::get('/hello', function() {
+    return 'hi';
+});
+
+
+
