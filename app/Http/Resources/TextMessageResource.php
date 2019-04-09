@@ -4,6 +4,16 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * Class TextMessage
+ * @package ananas
+ * @author mikkoaf
+ * 
+ * @OA\Schema(
+ *      description="Text message",
+ *      title="Text message",
+ * )
+ */
 class TextMessageResource extends JsonResource
 {
     /**

@@ -24,20 +24,26 @@ class DatabaseSeeder extends Seeder
         // for each user, make some Dialogue people
         foreach ($users as $user)
         {
-            $diaPeople = factory(DialoguePerson::class, random_int( 0 , 5 ))->create([
+            $diaPeople = factory(DialoguePerson::class, random_int( 1 , 5 ))->create([
                 'user_id' => $user->id
             ]);
             foreach ($diaPeople as $person)
             {
-                $messages = factory(TextMessage::class, 50)->create([
-                    'user_id' => $person->user_id,
-                    'person_id' => $person->id,
-                    'person_name' => $person->person_name
-                ]);
-                $locations = factory(LocationHistory::class, 50)->create([
-                    'user_id' => $person->user_id,
-                    'person_id' => $person->id,
-                ]);
+                for( $i = 0; $i<random_int( 10 , 30 ); $i++ ) {
+                    $textLocations = factory(TextLocation::class)->create([
+                        'user_id' => $person->user_id,
+                        'person_id' => $person->id,
+                        'text_id' => factory(TextMessage::class)->create([
+                            'user_id' => $person->user_id,
+                            'person_id' => $person->id,
+                            'person_name' => $person->person_name
+                        ])->id,
+                        'location_id' => factory(LocationHistory::class)->create([
+                            'user_id' => $person->user_id,
+                            'person_id' => $person->id,
+                        ])->id,
+                    ]);
+                 }
             }
         }
 

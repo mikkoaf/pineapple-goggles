@@ -14,6 +14,9 @@ class TextLocationResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'text' => $this->textMessage,
+            'location' => $this->locationHistory
+        ];
     }
 }
