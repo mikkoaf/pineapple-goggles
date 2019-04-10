@@ -4,6 +4,7 @@
 /public/css/app.css
 /public/storage
 /storage/*.key
+/storage/api-docs
 /vendor
 .env
 .phpunit.result.cache
