@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         // for each user, make some Dialogue people
         foreach ($users as $user)
         {
+            $this->command->line('Filling user '.$user->id);
             $diaPeople = factory(DialoguePerson::class, random_int( 1 , 5 ))->create([
                 'user_id' => $user->id
             ]);
@@ -33,14 +34,16 @@ class DatabaseSeeder extends Seeder
                     $textLocations = factory(TextLocation::class)->create([
                         'user_id' => $person->user_id,
                         'person_id' => $person->id,
-                        'text_id' => factory(TextMessage::class)->create([
+                        'text_message_id' => factory(TextMessage::class)->create([
                             'user_id' => $person->user_id,
                             'person_id' => $person->id,
-                            'person_name' => $person->person_name
+                            'person_name' => $person->person_name,
+                            //'text_location_id' => $i
                         ])->id,
-                        'location_id' => factory(LocationHistory::class)->create([
+                        'location_history_id' => factory(LocationHistory::class)->create([
                             'user_id' => $person->user_id,
                             'person_id' => $person->id,
+                            //'text_location_id' => $i,
                         ])->id,
                     ]);
                  }

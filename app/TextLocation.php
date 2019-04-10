@@ -11,8 +11,8 @@ class TextLocation extends Model
     protected $fillable = [
         'user_id',
         'person_id',
-        'text_id',
-        'location_id',
+        'text_message_id',
+        'location_history_id',
     ];
 
     public function user()
