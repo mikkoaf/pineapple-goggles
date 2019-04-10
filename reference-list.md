@@ -22,6 +22,8 @@ This document is for gathering all the reference material I found quite useful.
 
 [VUE google maps](https://alligator.io/vuejs/vue-google-maps)
 
+[VUE consume APIs](https://vuejs.org/v2/cookbook/using-axios-to-consume-apis.html)
+
 [Passport Authentication](https://medium.com/techcompose/create-rest-api-in-laravel-with-authentication-using-passport-133a1678a876)
 
 [Eloquent Resources](https://laravel.com/docs/5.8/eloquent-resources)
