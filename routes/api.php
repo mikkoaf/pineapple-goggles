@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Http\Request;
-use app\Http\Controllers\api\LocationHistoryController;
+use App\Http\Controllers\Api\LocationHistoryController;
+use App\Http\Controllers\Api\TextLocationController;
+use App\Http\Controllers\Api\TextMessageController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -31,15 +34,15 @@ Route::group(['middleware' => 'auth:api'], function(){
 });
 
 Route::prefix('locations')->group(function () {
-    Route::get('/', 'api\LocationHistoryController@index');
+    Route::get('/', 'Api\LocationHistoryController@index');
 });
 
 Route::prefix('texts')->group(function() {
-    Route::get('/', 'api\TextMessageController@index');
+    Route::get('/', 'Api\TextMessageController@index');
 });
 
 Route::prefix('text-locations')->group(function () {
-    Route::get('/', 'api\TextLocationController@index');
+    Route::get('/', 'Api\TextLocationController@index');
 });
 Route::get('/hello', function() {
     return 'hi';

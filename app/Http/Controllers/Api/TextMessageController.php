@@ -1,21 +1,24 @@
 <?php
+/**
+ * @OA\Info(title="Text Message and Location History API", version="0.1")
+ */
+namespace App\Http\Controllers\Api;
 
-namespace App\Http\Controllers\api;
-
-use App\Http\Requests\LocationHistoryRequest;
-use App\Http\Resources\LocationHistoryResource;
-use App\LocationHistory;
+use App\Http\Requests\TextMessageRequest;
+use App\Http\Resources\TextMessageResource;
+use App\TextMessage;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller; 
 
-class LocationHistoryController extends Controller
+class TextMessageController extends Controller
 {
     /**
+     * Returns text messages of a DialoguePerson
      * @OA\Get(
-     *      path="/api/locations",
+     *      path="/api/texts",
      *      operationId="index",
-     *      tags={"LocationHistory"},
-     *      summary="Get a list of saved location information",
-     *      description="Returns location history of a DialoguePerson",
+     *      tags={"Text Messages"},
+     *      summary="Get a list of text messages",
      *      @OA\Parameter(
      *         name="person-id",
      *         in="query",
@@ -51,16 +54,12 @@ class LocationHistoryController extends Controller
      *          description="successful operation"
      *       ),
      *       @OA\Response(response=400, description="Bad request"),
-     *       security={
-     *           {"api_key_security_example": {}}
-     *       }
+     *       
      *     )
-     *
-     * Returns a bunch of LocationHistories
      */
-    public function index(LocationHistoryRequest $request)
+    public function index(TextMessageRequest $request)
     {
-        return LocationHistoryResource::collection(LocationHistory::where('person_id',
+        return TextMessageResource::collection(TextMessage::where('person_id',
                                                 $request->input('person_id'))->paginate());
     }
 }
