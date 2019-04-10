@@ -27,12 +27,12 @@ class TextLocation extends Model
 
     public function textMessage()
     {
-        return $this->hasOne('App\TextMessage');
+        return $this->belongsTo('App\TextMessage', 'text_message_id');
     }
 
     public function locationHistory()
     {
-        return $this->hasOne('App\LocationHistory');
+        return $this->belongsTo('App\LocationHistory', 'location_history_id');
     }
 
 }
