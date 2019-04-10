@@ -8,17 +8,17 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class LocationHistoryTest extends TestCase
 {
-    use RefreshDatabase;
+    //use RefreshDatabase;
 
     /**
      * A basic functional test example.
      *
      * @return void
      */
-    public function testBasicExample()
+    public function testLocationHistoryRoute()
     {
         $response = $this->get('/');
 
-        // ...
+        $response->assertStatus(200);
     }
 }
