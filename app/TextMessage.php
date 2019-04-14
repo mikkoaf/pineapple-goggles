@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class TextMessage extends Model
 {
     //
@@ -29,7 +30,7 @@ class TextMessage extends Model
 
     public function textLocation()
     {
-        return $this->belongsTo('App\TextLocation');
+        return $this->hasOne('App\TextLocation');
     }
 
 }

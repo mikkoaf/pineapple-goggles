@@ -16,7 +16,7 @@ class TextLocationResource extends JsonResource
     {
         return [
             'text' => $this->textMessage,
-            'location' => $this->locationHistory
+            'location' => $this->locationHistory,
         ];
     }
 }

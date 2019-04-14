@@ -20,16 +20,13 @@ use App\Http\Controllers\Api\TextMessageController;
 // basic route to get pineapples
 Route::get('/ananas', 'AnanasController@show');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 // TODO: use passport for use authentication instead
 Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
 
 // 
 Route::group(['middleware' => 'auth:api'], function(){
+    Route::get('details', 'UserController@details');
     Route::post('details', 'UserController@details');
 });
 

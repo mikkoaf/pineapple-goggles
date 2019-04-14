@@ -24,6 +24,9 @@ class TextMessageResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'person_name' => $this->person_name,
+            'message' => $this->message,
+        ];
     }
 }
