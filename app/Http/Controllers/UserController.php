@@ -13,7 +13,7 @@ class UserController extends Controller
 
 public $successStatus = 200;
 
-/** 
+    /** 
      * login api 
      * 
      * @return \Illuminate\Http\Response 
@@ -28,7 +28,8 @@ public $successStatus = 200;
             return response()->json(['error'=>'Unauthorised'], 401); 
         } 
     }
-/** 
+    
+    /** 
      * Register api 
      * 
      * @return \Illuminate\Http\Response 
@@ -51,7 +52,8 @@ $input = $request->all();
         $success['name'] =  $user->name;
 return response()->json(['success'=>$success], $this-> successStatus); 
     }
-/** 
+
+    /** 
      * details api 
      * 
      * @return \Illuminate\Http\Response 

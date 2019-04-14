@@ -10,11 +10,7 @@ This document is for gathering all the reference material I found quite useful.
 
 [Generating ER diagram](https://github.com/beyondcode/laravel-er-diagram-generator)
 
-
-
 [Database Seeder](https://scotch.io/@wisdomanthoni/make-your-laravel-seeder-using-model-factories)
-
-
 
 [vue SPA](https://www.youtube.com/watch?v=CiXCubwd5cM)
 
@@ -23,6 +19,8 @@ This document is for gathering all the reference material I found quite useful.
 [VUE google maps](https://alligator.io/vuejs/vue-google-maps)
 
 [VUE consume APIs](https://vuejs.org/v2/cookbook/using-axios-to-consume-apis.html)
+
+[Axios cheatsheet](https://kapeli.com/cheat_sheets/Axios.docset/Contents/Resources/Documents/index)
 
 [Passport Authentication](https://medium.com/techcompose/create-rest-api-in-laravel-with-authentication-using-passport-133a1678a876)
 

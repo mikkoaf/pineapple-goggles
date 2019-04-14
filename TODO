@@ -1,10 +1,8 @@
-PASSPORT
-<passport-clients></passport-clients>
-<passport-authorized-clients></passport-authorized-clients>
-<passport-personal-access-tokens></passport-personal-access-tokens>
 
 vue SPA
-- map component
+- FIX ERRORS
+- Get the info printed out somehow
+X map component
 - text box component
 - charts components
 - header component for future features
@@ -32,4 +30,8 @@ Saving locations
 > link to person 
 > link to texts
 
+PASSPORT
+<passport-clients></passport-clients>
+<passport-authorized-clients></passport-authorized-clients>
+<passport-personal-access-tokens></passport-personal-access-tokens>
 
