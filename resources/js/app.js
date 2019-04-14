@@ -22,6 +22,11 @@ Vue.component(
   require('./components/passport/PersonalAccessTokens.vue').default
 );
 
+Vue.component(
+  'textlog',
+  require('./components/TextLog.vue').default 
+);
+
 Vue.use(VueRouter);
 Vue.use(Vuex);
 Vue.use(VueGoogleMaps, {
@@ -44,6 +49,4 @@ window.addEventListener('load', function () {
 
     });
 })
-
-
 

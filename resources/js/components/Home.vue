@@ -1,9 +1,8 @@
 <template>
 
     <div>
-        <h2>Textlog</h2>
+        <h2>Text to Location visualization</h2>
         <div class="textlog">Lorem</div>
-        <button @click="getTextLocationLog">Log data</button>
     </div>
 </template>
 
@@ -11,11 +10,7 @@
     export default {
         name: "Home",
         methods: {
-            getTextLocationLog() {
-                axios
-                .get('/api/text-locations?person-id=1')
-                .then(response => (console.log(response)))
-                }
+            
         }
     }
 </script>
