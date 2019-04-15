@@ -7,6 +7,9 @@
         <ul id="textLog">
             <li v-for="t in test" :value="t.value" :key="t.value">
                 <div
+                    @mouseover="hover = true"
+                    @mouseleave="hover = false"
+                    :class="{ highlight: hover }">
                     {{t.text.message_sent}} - {{t.text.person_name}} - {{ t.text.message }}
                 </div>
             </li>
@@ -19,7 +22,8 @@
         name: "TextLog",
         data: function () {
             return {
-            message: 'not updated'
+                hover: false,
+                test: []
             }
         },
         methods: {
@@ -51,5 +55,7 @@
 </script>
 
 <style scoped>
-
+:hover {
+    color: red
+}
 </style>
