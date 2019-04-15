@@ -2,7 +2,7 @@
     <div>
         <h2>Textlog</h2>
 
-        <button @click="getTextLocationLog">Log data</button>
+        <button @click="getTextLog">Log data</button>
         <div class="textlog">Lorem</div>
         <ul id="textLog">
             <li v-for="t in test" :value="t.value" :key="t.value">
@@ -26,8 +26,17 @@
                 test: []
             }
         },
+        mounted() {
+            if (localStorage.getItem('textlog')){
+                try {
+                    this.text = JSON.parse(localStorage.getItem('textlog'))
+                } catch(e) {
+                    localStorage.removeItem('textlog');
+                }
+            }
+        },
         methods: {
-            getTextLocationLog: function () {
+            getTextLog: function () {
                 this.text = [
                     'hi',
                     'ho'
@@ -35,14 +44,12 @@
                 axios
                 .get('/api/text-locations?person-id=1')
                 .then(function (response) {
-                    this.test = response.data.data;
-                    console.log(response.data.data);
+                    localStorage.textlog = JSON.stringify(response.data.data);
                 }.bind(this))
                 .catch(function (error) {
 
                 });
             },
-
             updateMessage: function () {
                 this.message = 'updated'
                 console.log(this.$el.textContent) // => 'not updated'
