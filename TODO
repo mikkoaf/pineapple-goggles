@@ -1,29 +1,30 @@
+TODO:
+hover effects:
+- add ID to locations and texts (linking)
+- specify rules for hover effects
+    textbox
+    map
+    graphs
 
-vue SPA
-- FIX ERRORS
-- Get the info printed out somehow
-X map component
+Support for information of multiple persons
+- unique markers (color/shape)
+- unique logo next to messages?
+
+Stylize:
 - text box component
 - charts components
-- header component for future features
+
+Security/Authentication:
+- log in to access personal information
 
 Test driven development
   UnitTests - 
   HttpTests - feature tests
 
-get info from the old python api
-
-show info from the old python api
-
-transition to new api
-> make new models to link things
-
-
 Saving texts from api
 > Link to user
 > Create person
 > link to person
-
 
 Saving locations
 > link to user
