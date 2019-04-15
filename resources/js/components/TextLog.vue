@@ -26,37 +26,29 @@
                 test: []
             }
         },
-        mounted() {
-            if (localStorage.getItem('textlog')){
-                try {
-                    this.text = JSON.parse(localStorage.getItem('textlog'))
-                } catch(e) {
-                    localStorage.removeItem('textlog');
-                }
-            }
-        },
         methods: {
             getTextLog: function () {
                 this.text = [
                     'hi',
                     'ho'
-                ]
-                axios
-                .get('/api/text-locations?person-id=1')
+                ];
+                axios.get('/api/text-locations?person-id=1')
                 .then(function (response) {
                     localStorage.textlog = JSON.stringify(response.data.data);
                 }.bind(this))
                 .catch(function (error) {
 
                 });
+                if (localStorage.getItem('textlog')){
+                    try {
+                        this.test = JSON.parse(localStorage.getItem('textlog'))
+
+                    } catch(e) {
+                        localStorage.removeItem('textlog');
+                    }
+                }
+                this.$forceUpdate();
             },
-            updateMessage: function () {
-                this.message = 'updated'
-                console.log(this.$el.textContent) // => 'not updated'
-                this.$nextTick(function () {
-                    console.log(this.$el.textContent) // => 'updated'
-                })
-            }
         }
     }
 </script>

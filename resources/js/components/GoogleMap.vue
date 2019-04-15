@@ -7,6 +7,7 @@
           @place_changed="setPlace">
         </gmap-autocomplete>
         <button @click="addMarker">Add</button>
+        <button @click="updateMarkers">Update</button>
       </label>
       <br/>
 
@@ -34,7 +35,7 @@ export default {
     return {
       // default to Montreal to keep it simple
       // change this to whatever makes sense
-      center: { lat: 45.508, lng: -73.587 },
+      center: { lat: 65.455, lng: 22.264 },
       markers: [],
       places: [],
       currentPlace: null
@@ -42,10 +43,27 @@ export default {
   },
 
   mounted() {
-    this.geolocate();
+    //this.geolocate();
   },
 
   methods: {
+    updateMarkers() {
+      if (localStorage.getItem('textlog')){
+        try {
+          var logData = [];
+          logData = JSON.parse(localStorage.textlog);
+          console.log(logData);
+          logData.forEach(element => {
+            console.log('new marker');
+            this.addNewMarker(parseFloat(element.location.latitude), parseFloat(element.location.longitude));
+          });
+        } catch(e) {
+          console.log(e);
+
+          //localStorage.removeItem('etextlog');
+        }
+      }
+    },
     // receives a place object via the autocomplete component
     setPlace(place) {
       this.currentPlace = place;
@@ -61,6 +79,13 @@ export default {
         this.center = marker;
         this.currentPlace = null;
       }
+    },
+    addNewMarker(latitude, longitude) {
+        const marker = {
+          lat: latitude,
+          lng: longitude
+        };
+        this.markers.push({ position: marker });
     },
     geolocate: function() {
       navigator.geolocation.getCurrentPosition(position => {
