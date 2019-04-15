@@ -4,10 +4,11 @@
 
         <button @click="getTextLocationLog">Log data</button>
         <div class="textlog">Lorem</div>
-        {{ message }}
         <ul id="textLog">
             <li v-for="t in test" :value="t.value" :key="t.value">
-                {{ t }}
+                <div
+                    {{t.text.message_sent}} - {{t.text.person_name}} - {{ t.text.message }}
+                </div>
             </li>
         </ul>
     </div>
@@ -22,7 +23,11 @@
             }
         },
         methods: {
-            getTextLocationLog() {
+            getTextLocationLog: function () {
+                this.text = [
+                    'hi',
+                    'ho'
+                ]
                 axios
                 .get('/api/text-locations?person-id=1')
                 .then(function (response) {
