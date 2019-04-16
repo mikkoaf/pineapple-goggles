@@ -7,9 +7,13 @@
         <ul id="textLog">
             <li v-for="t in test" :value="t.value" :key="t.value">
                 <div
+                    v-bind:id="t.text.id"
                     @mouseover="hover = true"
                     @mouseleave="hover = false"
-                    :class="{ highlight: hover }">
+                    :class="{
+                        'highlight': hover,
+                        }
+                        ">
                     {{t.text.message_sent}} - {{t.text.person_name}} - {{ t.text.message }}
                 </div>
             </li>
@@ -32,6 +36,7 @@
                     'hi',
                     'ho'
                 ];
+                // TODO: refactor this hole thing to use the text-endpoint
                 axios.get('/api/text-locations?person-id=1')
                 .then(function (response) {
                     localStorage.textlog = JSON.stringify(response.data.data);
@@ -54,7 +59,8 @@
 </script>
 
 <style scoped>
-:hover {
-    color: red
+
+body {
+    background-color: #eeeeee;
 }
 </style>

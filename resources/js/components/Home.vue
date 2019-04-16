@@ -2,7 +2,7 @@
 
     <div>
         <h2>Text to Location visualization</h2>
-        <div class="textlog">Lorem</div>
+        <div class="textlog">This is a school project</div>
     </div>
 </template>
 
@@ -15,6 +15,8 @@
     }
 </script>
 
-<style scoped>
-
+<style>
+.highlight:hover {
+    color: red
+}
 </style>
