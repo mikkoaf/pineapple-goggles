@@ -52,10 +52,8 @@ export default {
         try {
           var logData = [];
           logData = JSON.parse(localStorage.textlog);
-          console.log(logData);
           logData.forEach(element => {
-            console.log('new marker');
-            this.addNewMarker(parseFloat(element.location.latitude), parseFloat(element.location.longitude));
+            this.addNewMarker(element.location);
           });
         } catch(e) {
           console.log(e);
@@ -80,12 +78,16 @@ export default {
         this.currentPlace = null;
       }
     },
-    addNewMarker(latitude, longitude) {
-        const marker = {
-          lat: latitude,
-          lng: longitude
+    addNewMarker(locationElement) {
+        const location = {
+          lat: parseFloat(locationElement.latitude),
+          lng: parseFloat(locationElement.longitude),
         };
-        this.markers.push({ position: marker });
+        const marker = {
+          position: location,
+          // icon: locationElement.image
+        }
+        this.markers.push(marker);
     },
     geolocate: function() {
       navigator.geolocation.getCurrentPosition(position => {
