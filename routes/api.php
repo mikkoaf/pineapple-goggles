@@ -22,7 +22,7 @@ Route::get('/ananas', 'AnanasController@show');
 
 // TODO: use passport for use authentication instead
 Route::post('login', 'UserController@login');
-Route::post('register', 'UserController@register');
+Route::post('register', 'UserController@create');
 
 // 
 Route::group(['middleware' => 'auth:api'], function(){

@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request; 
-use App\Http\Controllers\Controller; 
-use App\User; 
+use App\Http\Requests\RegisterRequest;
+use App\User;
 use Illuminate\Support\Facades\Auth; 
-use Validator;
 
 /**
  * Class UserController
@@ -41,27 +39,27 @@ public $successStatus = 200;
     }
     
     /** 
-     * Register api 
+     * @OA\Post(
+     *     path="/api/register",
+     *     tags={"Users"},
+     *     summary="Register a user",
+     *     requestBody={"$ref": "#/components/requestBodies/Register"},
+     *     @OA\Response(
+     *          response=201,
+     *          description="Successfully registered, greetings!"
+     *     )
+     *
+     * )
      * 
      * @return \Illuminate\Http\Response 
      */ 
-    public function register(Request $request) 
+    public function create(RegisterRequest $request)
     { 
-        $validator = Validator::make($request->all(), [ 
-            'name' => 'required', 
-            'email' => 'required|email', 
-            'password' => 'required', 
-            'c_password' => 'required|same:password', 
-        ]);
-if ($validator->fails()) { 
-            return response()->json(['error'=>$validator->errors()], 401);            
-        }
-$input = $request->all(); 
-        $input['password'] = bcrypt($input['password']); 
-        $user = User::create($input); 
-        $success['token'] =  $user->createToken('MyApp')-> accessToken; 
-        $success['name'] =  $user->name;
-return response()->json(['success'=>$success], $this-> successStatus); 
+        $input = $request->all();
+        $input['password'] = bcrypt($input['password']);
+        // TODO: check for no duplicates here or request?
+        User::create($input);
+        return response()->json('Welcome ' . $input['name'],201);
     }
 
     /** 
