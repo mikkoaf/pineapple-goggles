@@ -10,27 +10,25 @@ use App\Http\Controllers\Controller;
 class UploadController extends Controller
 {
     /**
-     * Returns text messages of a DialoguePerson
+     * Post your person's details
      * @OA\Post(
      *      path="/api/upload",
      *      tags={"File upload"},
      *      summary="Upload files",
-     *     @OA\Parameter(
-     *         name="upload",
-     *         in="body",
-     *         description="Limit the number of items per query",
-     *         required=false,
-     *         explode=true,
-     *         @OA\Schema(
-     *             type="file"
-     *         )
-     *     ),
+     *      @OA\RequestBody(
+     *          description="A file containing locationdata or text messages",
+     *          @OA\MediaType(
+     *              mediaType="application/octet-stream",
+     *              @OA\Schema(
+     *                  type="string",
+     *              )
+     *          )
+     *      ),
      *      @OA\Response(
-     *          response=200,
+     *          response=201,
      *          description="successful operation"
      *       ),
      *       @OA\Response(response=400, description="Bad request"),
-     *
      *    )
      *
      * https://stackoverflow.com/questions/46633582/laravel-file-upload-api-using-postman

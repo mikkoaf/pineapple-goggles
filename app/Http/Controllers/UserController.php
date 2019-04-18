@@ -8,6 +8,17 @@ use App\User;
 use Illuminate\Support\Facades\Auth; 
 use Validator;
 
+/**
+ * Class UserController
+ *
+ * Simple User login controller.
+ *
+ * TODO: refactor
+ * ie. validations to a separate RegisterRequest
+ *
+ *
+ * @package App\Http\Controllers
+ */
 class UserController extends Controller 
 {
 

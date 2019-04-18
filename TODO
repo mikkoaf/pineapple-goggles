@@ -20,6 +20,7 @@ Stylize:
 
 Security/Authentication:
 - log in to access personal information
+implement: https://packagist.org/packages/schuppo/password-strength
 
 Test driven development
   UnitTests - 

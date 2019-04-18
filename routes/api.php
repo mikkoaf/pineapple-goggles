@@ -30,6 +30,8 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::post('details', 'UserController@details');
 });
 
+Route::post('/upload', 'Api\UploadController@upload');
+
 Route::prefix('locations')->group(function () {
     Route::get('/', 'Api\LocationHistoryController@index');
 });

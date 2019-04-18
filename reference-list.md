@@ -39,6 +39,8 @@ This document is for gathering all the reference material I found quite useful.
 
 [Little snippet on linking from outside to Google Maps](http://jsfiddle.net/dheffernan/3xkuybrf/)
 
+[Labels on markers](https://stackoverflow.com/questions/5603623/how-can-i-show-label-title-for-marker-permanently-in-google-maps-v3)
+
 ### Using APIs
 
 [VUE consume APIs](https://vuejs.org/v2/cookbook/using-axios-to-consume-apis.html)
