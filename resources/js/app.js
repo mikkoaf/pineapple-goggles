@@ -26,12 +26,17 @@ Vue.component(
   'textlog',
   require('./components/TextLog.vue').default 
 );
-
+/*
+Vue.component(
+  'dataloader',
+  require('.components/DataLoader.vue').default
+);
+*/
 Vue.use(VueRouter);
 Vue.use(Vuex);
 Vue.use(VueGoogleMaps, {
     load: {
-      key: "REPLACE-THIS-WITH-YOUR-KEY-FROM-ABOVE",
+      key: 'AIzaSyAnTXvO0WzqCOrGovRJElUFqxKqwnOjSTM',
       libraries: "places" // necessary for places input
     }
   });

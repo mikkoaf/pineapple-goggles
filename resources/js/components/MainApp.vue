@@ -1,6 +1,5 @@
 <template>
     <div id="app">
-
         <div class="container-fluid">
             <div class="row">
                 <router-view></router-view>
@@ -18,10 +17,11 @@
 <script>
     import TextLog from "./TextLog";
     import GoogleMap from "./GoogleMap";
+    /* import DataLoader from "./Dataloader"; */
     export default {
         name: 'app',
         components:{
-            GoogleMap, TextLog
+           /* DataLoader, */ GoogleMap, TextLog
         },
         mounted() {
             console.log('Component mounted.')
