@@ -24,13 +24,17 @@ Route::get('/ananas', 'AnanasController@show');
 Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@create');
 
-// 
+
+// Authenticated routes
 Route::group(['middleware' => 'auth:api'], function(){
     Route::get('details', 'UserController@details');
     Route::post('details', 'UserController@details');
+
+    // Uploading tasks
+    Route::post('/upload', 'Api\UploadController@upload');
 });
 
-Route::post('/upload', 'Api\UploadController@upload');
+
 
 Route::prefix('locations')->group(function () {
     Route::get('/', 'Api\LocationHistoryController@index');
