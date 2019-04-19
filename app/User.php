@@ -57,4 +57,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\TextLocation');
     }
+
+    public function uploads()
+    {
+        return $this->hasMany('App\Uploads');
+    }
 }
