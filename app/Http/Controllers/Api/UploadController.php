@@ -54,6 +54,7 @@ class UploadController extends Controller
                 'user_id' => Auth::id(),
                 'filename' => $file->getClientOriginalName()
             ]);
+            ParseTextLog::dispatch($storedFile);
         }
     }
 }
