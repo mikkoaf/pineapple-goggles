@@ -22,11 +22,20 @@ class UserController extends Controller
 
 public $successStatus = 200;
 
-    /** 
-     * login api 
-     * 
-     * @return \Illuminate\Http\Response 
-     */ 
+    /**
+     * @OA\Post(
+     *     path="/api/login",
+     *     tags={"Users"},
+     *     summary="Login as a user",
+     *     requestBody={"$ref": "#/components/requestBodies/Register"},
+     *     @OA\Response(
+     *          response=200,
+     *          description="Successfully login, greetings!"
+     *     )
+     *
+     * )
+     * @return \Illuminate\Http\Response
+     */
     public function login(){ 
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){ 
             $user = Auth::user(); 
