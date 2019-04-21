@@ -10,7 +10,6 @@
  */
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * @OA\Schema(
@@ -21,7 +20,7 @@ use Illuminate\Foundation\Http\FormRequest;
  * Class RegisterRequest
  * @package App\Http\Requests
  */
-class RegisterRequest extends FormRequest
+class RegisterRequest  extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -67,7 +66,26 @@ class RegisterRequest extends FormRequest
              *      description="User password",
              * )
              */
-            'password' => 'required',
+            'password' => 'required|min:8|case_diff|numbers|letters',
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'name.required' => 'A name is required',
+            'email.required'  => 'Email is required',
+            'email.email' => 'Provice valid email',
+            'password.required' => 'Password required',
+            'password.min:8' => 'Password has to be more than 8 characters',
+            'password.case_diff' => 'Password must include upper and lowercase characters',
+            'password.numbers' => 'Password must include numbers',
+            'password.letters' => 'Password must include letters',
         ];
     }
 }
