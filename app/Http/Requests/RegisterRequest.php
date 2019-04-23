@@ -80,7 +80,7 @@ class RegisterRequest  extends ApiRequest
         return [
             'name.required' => 'A name is required',
             'email.required'  => 'Email is required',
-            'email.email' => 'Provice valid email',
+            'email.email' => 'Provide valid email',
             'password.required' => 'Password required',
             'password.min:8' => 'Password has to be more than 8 characters',
             'password.case_diff' => 'Password must include upper and lowercase characters',
