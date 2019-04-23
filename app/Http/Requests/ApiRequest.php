@@ -43,6 +43,6 @@ class ApiRequest extends FormRequest
 
         throw new HttpResponseException(response()->json([
             'errors' => $errors
-        ], 401));
+        ], 422));
     }
 }
