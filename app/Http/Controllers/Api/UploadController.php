@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Jobs\ParseTextLog;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -43,18 +44,19 @@ class UploadController extends Controller
      * TODO: Required mime: .txt
      *
      * @param Request $request
+     * @return Response
      */
     public function upload(Request $request)
     {
-
         $file = $request->file('upload');
         if (!empty($file)) {
-            Storage::put($file->getClientOriginalName(), file_get_contents($file));
+            Storage::disk('local')->put($file->getClientOriginalName(), file_get_contents($file));
             $storedFile = Upload::create([
                 'user_id' => Auth::id(),
                 'filename' => $file->getClientOriginalName()
             ]);
             ParseTextLog::dispatch($storedFile);
+            return response()->json(['' => ''], 202);
         }
     }
 }
