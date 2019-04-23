@@ -3,21 +3,23 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-//use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class TextLocationTest extends TestCase
 {
-    //use //RefreshDatabase;//, WithoutMiddleware;
+
+    public function testRouteFails()
+    {
+        $this->get('/api/text-locations')->assertStatus(403);
+    }
 
     /**
      * A basic functional test example.
      *
      * @return void
-     */
+     *
     public function testTextLocationRoute()
     {
-        $response = $this->get('/api/text-locations?person-id=1');//, ['person-id' => 1]);
+        $response = $this->get('/api/text-locations');//, ['person-id' => 1]);
 
         $response->assertJsonStructure([
             'data',
@@ -25,4 +27,10 @@ class TextLocationTest extends TestCase
             'meta',
         ]);
     }
+
+    public function testUserCanGetAllTextLocations()
+    {
+
+    }
+     */
 }
