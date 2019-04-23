@@ -1,7 +1,12 @@
 TODO:
 
 Raw data control
-- upload controller
+- upload as an abstract model which the two upload types use
+- migrations for the two models
+-
+PARSING MESSAGES TO DB
+PARSING LOCATIONS TO DB
+
 
 hover effects:
 - add ID to locations and texts (linking)
