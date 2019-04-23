@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\TextLocationRequest;
 use App\Http\Resources\TextLocationResource;
 use App\TextLocation;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller; 
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class TextLocationController extends Controller
 {
@@ -62,6 +62,8 @@ class TextLocationController extends Controller
     public function index(TextLocationRequest $request)
     {
         return TextLocationResource::collection(TextLocation::where('person_id',
-                                                $request->input('person-id'))->paginate());
+                                                $request->input('person-id'))
+                                                ->where('user_id', Auth::id())
+                                                ->paginate());
     }
 }

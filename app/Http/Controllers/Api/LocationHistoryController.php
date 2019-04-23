@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\LocationHistoryRequest;
 use App\Http\Resources\LocationHistoryResource;
 use App\LocationHistory;
-use App\Http\Controllers\Controller; 
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class LocationHistoryController extends Controller
 {
@@ -57,10 +58,16 @@ class LocationHistoryController extends Controller
      *     )
      *
      * Returns a bunch of LocationHistories
+     * @param LocationHistoryRequest
+     * @return
+     *
      */
     public function index(LocationHistoryRequest $request)
     {
-        return LocationHistoryResource::collection(LocationHistory::where('person_id',
-                                                $request->input('person_id'))->paginate());
+        return LocationHistoryResource::collection(LocationHistory::where(
+            'person_id', $request->input('person_id')
+            )
+            ->where('user_id', Auth::id())
+            ->paginate());
     }
 }

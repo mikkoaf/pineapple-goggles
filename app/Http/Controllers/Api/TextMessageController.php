@@ -7,8 +7,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\TextMessageRequest;
 use App\Http\Resources\TextMessageResource;
 use App\TextMessage;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller; 
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class TextMessageController extends Controller
 {
@@ -60,6 +60,8 @@ class TextMessageController extends Controller
     public function index(TextMessageRequest $request)
     {
         return TextMessageResource::collection(TextMessage::where('person_id',
-                                                $request->input('person_id'))->paginate());
+                                                $request->input('person_id'))
+                                                ->where('user_id', Auth::id())
+                                                ->paginate());
     }
 }
