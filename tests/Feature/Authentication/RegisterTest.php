@@ -9,12 +9,12 @@ use App\User;
 class RegisterTest extends TestCase
 {
 
-    public function testEmptyQuery()
+    public function testEmptyQuery(): void
     {
         $this->post('/api/register')->assertStatus(422);
     }
 
-    public function testRegisterValidationErrorBadPassword()
+    public function testRegisterValidationErrorBadPassword(): void
     {
         $payload = [
             'name' => 'ananas',
@@ -27,7 +27,7 @@ class RegisterTest extends TestCase
         $response->assertStatus(422);
     }
 
-    public function testRegisterValidationErrorBadEmail()
+    public function testRegisterValidationErrorBadEmail(): void
     {
         $payload = [
             'name' => 'ananas',
@@ -40,7 +40,7 @@ class RegisterTest extends TestCase
         $response->assertStatus(422);
     }
 
-    public function testRegisterValidationErrorNoName()
+    public function testRegisterValidationErrorNoName(): void
     {
         $payload = [
             'email' => 'testananas@ananas.com',
@@ -57,7 +57,7 @@ class RegisterTest extends TestCase
      *
      * @return void
      */
-    public function testRegisterProper()
+    public function testRegisterProper(): void
     {
         $payload = [
             'name' => 'ananas',
@@ -71,7 +71,10 @@ class RegisterTest extends TestCase
     }
 
 
-    public function testRegisterSameEmail()
+    /**
+     *
+     */
+    public function testRegisterSameEmail(): void
     {
         User::create([
             'name' => 'ananas',
@@ -86,6 +89,6 @@ class RegisterTest extends TestCase
         ];
         $response = $this->post('/api/register', $payload);
 
-        $response->assertStatus(403);
+        $response->assertStatus(409);
     }
 }
