@@ -23,7 +23,7 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
 
 after_failure:
-  - ls storage/logs/
+  - cat storage/logs/*
 
 cache:
   directories:
