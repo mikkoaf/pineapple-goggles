@@ -36,7 +36,7 @@ Vue.use(VueRouter);
 Vue.use(Vuex);
 Vue.use(VueGoogleMaps, {
     load: {
-      key: 'AIzaSyAnTXvO0WzqCOrGovRJElUFqxKqwnOjSTM',
+      key: "REPLACE-THIS-WITH-YOUR-KEY-FROM-ABOVE",
       libraries: "places" // necessary for places input
     }
   });
