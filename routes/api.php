@@ -30,5 +30,9 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::prefix('text-locations')->group(function () {
         Route::get('/', 'Api\TextLocationController@index');
     });
+
+    Route::prefix('person')->group( function() {
+       Route::resource('/', 'Api\DialoguePersonController');
+    });
 });
 
