@@ -89,6 +89,6 @@ class RegisterTest extends TestCase
         ];
         $response = $this->post('/api/register', $payload);
 
-        $response->assertStatus(409);
+        $response->assertStatus(422);
     }
 }
