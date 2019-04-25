@@ -10,7 +10,6 @@ before_script:
   - cp .env.travis .env
   - cp phpunit.xml-travis phpunit.xml
   - composer self-update
-  - composer update
   - composer install --no-interaction --prefer-source --dev
   - mysql -e 'create database homestead_test;'
   - php artisan key:generate
