@@ -26,7 +26,12 @@ Vue.component(
   'textlog',
   require('./components/TextLog.vue').default 
 );
-
+/*
+Vue.component(
+  'dataloader',
+  require('.components/DataLoader.vue').default
+);
+*/
 Vue.use(VueRouter);
 Vue.use(Vuex);
 Vue.use(VueGoogleMaps, {

@@ -22,6 +22,7 @@ class UserController extends Controller
 
 public $successStatus = 200;
 
+
     /**
      * @OA\Post(
      *     path="/api/login",
@@ -69,6 +70,7 @@ public $successStatus = 200;
         // TODO: check for no duplicates here or request?
         User::create($input);
         return response()->json('Welcome ' . $input['name'],201);
+
     }
 
     /** 
@@ -79,6 +81,6 @@ public $successStatus = 200;
     public function details() 
     { 
         $user = Auth::user(); 
-        return response()->json(['success' => $user], $this-> successStatus); 
+        return response()->json(['success' => $user], $this-> successStatus);
     } 
 }

@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Log;
 use Exception;
 use App\Services\DialoguePersonService;
 use DateTime;
-use Carbon\Carbon;
 
 class ParseTextLog implements ShouldQueue
 {
@@ -53,14 +52,14 @@ class ParseTextLog implements ShouldQueue
 
         // TODO: parsing files
         // The following code transforms WA texts to csv. use as little reference
-        //$file = Storage::get($this->upload->filename);
         $file = Storage::disk('local')->path($this->upload->filename);
         // skip first row ?
         $skip = true;
         foreach (file($file) as $row)
         {
-            // TODO: Handle rows that continue previous line!!
             // If the row begins with some other than a date-time like string, it is likely a continuation
+            // Skipping first row...
+            // TODO: handle first row nicely
             if ($skip)
             {
                 $skip = false;
@@ -68,13 +67,26 @@ class ParseTextLog implements ShouldQueue
             }
             $limit1 = strpos($row,'-');
             $limit2 = strpos($row,':');
+            // Either not found...
+            // TODO: Handle rows that continue previous line!!
+            if ( ! ($limit1 && $limit2) )
+            {
+               continue;
+            }
             $time = substr($row,0,$limit1);
-            // TODO: handle date formats
-            // $time = DateTime::createFromFormat("d.m.Y \k\l\o HH.II", $time);
+            // TODO: handle date all used formats
+            $time = explode('klo', $time);
+            $time = trim($time[0]) . ' ' .  trim($time[1]);
+            $time = DateTime::createFromFormat('d.m.Y H.i', $time);
 
-            $time = Carbon::now();
             $name = substr($row, $limit1, $limit2-$limit1);
+            // slice '- ' from the name
+            $name = substr(trim($name), 1);
+            // slice ': ' from message
             $message = substr($row, $limit2);
+            $message = substr(trim($message), 1);
+
+
             $person = $dialoguePerson->findPerson(
                 $this->upload->user_id,
                 $name
@@ -93,6 +105,7 @@ class ParseTextLog implements ShouldQueue
                 'message' => $message,
                 'message_sent' => $time,
             ]);
+
         }
     }
 
