@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Log;
 use Exception;
 use App\Services\DialoguePersonService;
 use DateTime;
-use Carbon\Carbon;
 
 class ParseTextLog implements ShouldQueue
 {
@@ -81,8 +80,13 @@ class ParseTextLog implements ShouldQueue
             $time = DateTime::createFromFormat('d.m.Y H.i', $time);
 
             $name = substr($row, $limit1, $limit2-$limit1);
-
+            // slice '- ' from the name
+            $name = substr(trim($name), 1);
+            // slice ': ' from message
             $message = substr($row, $limit2);
+            $message = substr(trim($message), 1);
+
+
             $person = $dialoguePerson->findPerson(
                 $this->upload->user_id,
                 $name
