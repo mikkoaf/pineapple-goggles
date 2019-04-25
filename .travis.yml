@@ -18,3 +18,10 @@ script:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
+after_failure:
+  - cat storage/logs/
+
+cache:
+  directories:
+    - vendor
