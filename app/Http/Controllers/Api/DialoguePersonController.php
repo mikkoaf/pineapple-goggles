@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Response;
 
 class DialoguePersonController extends Controller
 {
-    protected $dialoguePersonService
+    protected $dialoguePersonService;
 
     public function __construct(DialoguePersonService $dialoguePersonService)
     {
