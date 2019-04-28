@@ -9,10 +9,15 @@ Route::post('register', 'UserController@create');
 
 
 // Authenticated routes
-    Route::get('details', 'UserController@details');
-    Route::post('details', 'UserController@details');
 //Route::group(['middleware' => 'auth:api'], function(){
+    Route::prefix('users')->group( function() {
+        Route::get('{id}/details', 'UserController@details');
+        Route::post('{id}/details', 'UserController@details');
 
+
+
+
+    });
 
     // Uploading tasks
     Route::post('/upload', 'Api\UploadController@upload');

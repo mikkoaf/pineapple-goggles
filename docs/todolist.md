@@ -1,5 +1,16 @@
 # TODO:
 
+Visualizations:
+hover effects:
+- add ID to locations and texts (linking)
+- specify rules for hover effects
+    textbox
+    map
+    graphs
+
+
+Silver lining:
+
 Raw data control
 - upload as an abstract model which the two upload types use
 - migrations for the two models
@@ -7,13 +18,6 @@ Raw data control
 PARSING MESSAGES TO DB
 PARSING LOCATIONS TO DB
 
-
-hover effects:
-- add ID to locations and texts (linking)
-- specify rules for hover effects
-    textbox
-    map
-    graphs
 
 Support for information of multiple persons
 - unique markers (color/shape)
