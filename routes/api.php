@@ -23,8 +23,11 @@ Route::post('register', 'UserController@create');
     });
 
     // Accessing texts
+
+    Route::resource('texts', 'Api\TextMessageController');
     Route::prefix('texts')->group(function() {
-        Route::get('/', 'Api\TextMessageController@index');
+        //Route::get('/', 'Api\TextMessageController@index');
+        Route::resource('per-month', 'Api\MessagesToMonthController');
     });
 
     // Accessing link between texts and locations
