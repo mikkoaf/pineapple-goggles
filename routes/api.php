@@ -9,9 +9,10 @@ Route::post('register', 'UserController@create');
 
 
 // Authenticated routes
-Route::group(['middleware' => 'auth:api'], function(){
     Route::get('details', 'UserController@details');
     Route::post('details', 'UserController@details');
+//Route::group(['middleware' => 'auth:api'], function(){
+
 
     // Uploading tasks
     Route::post('/upload', 'Api\UploadController@upload');
@@ -34,5 +35,5 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::prefix('person')->group( function() {
        Route::resource('/', 'Api\DialoguePersonController');
     });
-});
+//});
 
