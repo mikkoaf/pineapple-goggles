@@ -12,14 +12,30 @@ Route::post('register', 'UserController@create');
 
 // Authenticated routes
 //Route::group(['middleware' => 'auth:api'], function(){
-    Route::prefix('users')->group( function() {
-        Route::get('{id}/details', 'UserController@details');
-        Route::post('{id}/details', 'UserController@details');
+    Route::prefix('users/{id}')->group( function() {
+        Route::get('details', 'UserController@details');
+        Route::post('details', 'UserController@details');
 
+        // Accessing locations
+        Route::prefix('locations')->group(function () {
+            Route::get('/', 'Api\Users\LocationHistoryController@index');
+        });
 
+        // Accessing texts
 
+        Route::resource('texts', 'Api\Users\TextMessageController');
+
+        // Accessing link between texts and locations
+        Route::resource('text-locations', 'Api\Users\TextLocationController');
+
+        Route::resource('dialogue-people', 'Api\Users\DialoguePersonController');
 
     });
+
+
+    // Messages to month...
+
+
 
     // Uploading tasks
     Route::post('/upload', 'Api\UploadController@upload');
