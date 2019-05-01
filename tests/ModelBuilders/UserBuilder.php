@@ -25,11 +25,6 @@ trait UserBuilder
     protected function aUserWithDialoguePeople(array $overrides = []): User
     {
         $user = $this->aUser();
-        /*
-        factory(DialoguePerson::class, random_int( 1 , 5 ))->create([
-            'user_id' => $user->id
-        ]);
-        */
         return $user;
     }
 }

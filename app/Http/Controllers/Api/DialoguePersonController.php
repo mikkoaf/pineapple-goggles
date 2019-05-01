@@ -6,6 +6,8 @@ use App\DialoguePerson;
 use App\Http\Resources\DialoguePersonResource;
 use App\Http\Controllers\Controller;
 use App\Services\DialoguePersonService;
+use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Facades\Response;
 
@@ -26,16 +28,16 @@ class DialoguePersonController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        return DialoguePersonResource::collection(DialoguePerson::where('user_id', Auth::id())
-            ->paginate());
+        // return DialoguePersonResource::collection(DialoguePerson::where('user_id', Auth::id())
+        return DialoguePersonResource::collection($this->dialoguePersonService->index());
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(Request $request): \Illuminate\Http\Response
     {
         $this->dialoguePersonService->create($request->all());
 
@@ -89,9 +91,9 @@ class DialoguePersonController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id): Response
     {
         $this->dialoguePersonService->delete($id);
 

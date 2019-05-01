@@ -19,6 +19,7 @@ trait DialoguePersonBuilder
      * Text Locations
      *
      * @param array
+     * @param User|null $user
      * @return DialoguePerson
      * @throws \Exception
      */
@@ -35,21 +36,21 @@ trait DialoguePersonBuilder
 
         // TODO: clean up,
         // Use associations?
-        for( $i = 0; $i<random_int( 10 , 30 ); $i++ ) {
+        for($i = 0, $iMax = random_int(10, 30); $i< $iMax; $i++ ) {
             $textMessage = factory(TextMessage::class)->create([
                 'user_id' => $person->user_id,
-                'person_id' => $person->id,
+                'dialogue_person_id' => $person->id,
                 'person_name' => $person->person_name,
                 ]);
 
             $locationHistory = factory(LocationHistory::class)->create([
                 'user_id' => $person->user_id,
-                'person_id' => $person->id,
+                'dialogue_person_id' => $person->id,
                 ]);
 
             $textLocation = factory(TextLocation::class)->create([
                 'user_id' => $person->user_id,
-                'person_id' => $person->id,
+                'dialogue_person_id' => $person->id,
                 'text_message_id' => $textMessage->id,
                 'location_history_id' => $locationHistory->id,
             ]);
