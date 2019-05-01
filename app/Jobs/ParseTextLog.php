@@ -76,7 +76,9 @@ class ParseTextLog implements ShouldQueue
             $time = substr($row,0,$limit1);
             // TODO: handle date all used formats
             $time = explode('klo', $time);
-            $time = trim($time[0]) . ' ' .  trim($time[1]);
+            $date = trim($time[0]);
+            $hours = trim($time[1]);
+            $time = $date . ' ' .  $hours;
             $time = DateTime::createFromFormat('d.m.Y H.i', $time);
 
             $name = substr($row, $limit1, $limit2-$limit1);
@@ -104,6 +106,8 @@ class ParseTextLog implements ShouldQueue
                 'person_name' => $person->person_name,
                 'message' => $message,
                 'message_sent' => $time,
+                'date' => $date,
+                'time' => $hours,
             ]);
 
         }

@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\DialoguePerson;
+use App\Http\Traits\TimeMappingTrait;
 use DateInterval;
 use DateTime;
 use Exception;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Log;
 
 class DialoguePersonRepository
 {
+    use TimeMappingTrait;
 
     /**
      * @var DialoguePerson
@@ -83,5 +85,31 @@ class DialoguePersonRepository
     public function delete($id)
     {
         return $this->dialoguePerson->find($id)->delete();
+    }
+
+    /**
+     * @param DialoguePerson $dialoguePerson
+     * @return array
+     * @throws Exception
+     */
+    public function favoriteMessageHours(DialoguePerson $dialoguePerson): array
+    {
+        $array = [];
+        Log::info($dialoguePerson->person_name);
+        foreach ($this->halfHourTimes() as $time) {
+            $array[$time] = $dialoguePerson
+                ->textMessages
+                ->whereBetween(
+                    'time',
+                    [
+                        $time,
+                        DateTime::createFromFormat('H.i', $time)
+                            ->add(new DateInterval('PT30M'))
+                            ->format('H.i')
+                    ]
+                )
+                ->count();
+        }
+        return $array;
     }
 }

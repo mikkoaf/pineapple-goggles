@@ -99,4 +99,34 @@ class DialoguePersonController extends Controller
 
         return Response::make('',204);
     }
+
+    /**
+     * @OA\Get(
+     *      path="/api/dialogue-people/{dialoguePerson}/favorite/hours",
+     *      tags={"Statistics"},
+     *      summary="Fetch an array about person's messaging habits",
+     *      @OA\Parameter(
+     *          required=true,
+     *          in="path",
+     *          name="dialoguePerson",
+     *          description="ID of the dialogue person",
+     *          @OA\Schema(
+     *              type="integer",
+     *              minimum=1,
+     *          ),
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Fetched successfully. Json with key per half an hour, value of number of texts."
+     *       ),
+     * )
+     *
+     * @param DialoguePerson $dialoguePerson
+     * @return array
+     * @throws Exception
+     */
+    public function favoriteHours(DialoguePerson $dialoguePerson): array
+    {
+        return $this->dialoguePersonService->favoriteHours($dialoguePerson);
+    }
 }

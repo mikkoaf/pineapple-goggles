@@ -1,6 +1,8 @@
 <?php
 
 // basic route to get pineapples
+use Illuminate\Support\Facades\Route;
+
 Route::get('/ananas', 'AnanasController@show');
 
 // TODO: use passport for use authentication instead
@@ -40,8 +42,11 @@ Route::post('register', 'UserController@create');
         Route::get('/', 'Api\TextLocationController@index');
     });
 
-    Route::prefix('person')->group( function() {
+    Route::prefix('dialogue-people')->group( function() {
        Route::resource('/', 'Api\DialoguePersonController');
+
+        // Messages to time of day...
+        Route::get('{dialoguePerson}/favorite/hours', 'Api\DialoguePersonController@favoriteHours');
     });
 //});
 
