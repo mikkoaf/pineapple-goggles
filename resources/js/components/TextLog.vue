@@ -36,8 +36,7 @@
                     'hi',
                     'ho'
                 ];
-                // TODO: refactor this hole thing to use the text-endpoint
-                axios.get('/api/text-locations?person-id=1')
+                axios.get('/api/text-locations')
                 .then(function (response) {
                     localStorage.textlog = JSON.stringify(response.data.data);
                 }.bind(this))

@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\TextLocationRequest;
 use App\Http\Resources\TextLocationResource;
-use App\TextLocation;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use App\Services\TextLocationService;
 
 class TextLocationController extends Controller
 {
+    protected $textLocationService;
+
+    public function __construct(TextLocationService $textLocationService)
+    {
+        $this->textLocationService = $textLocationService;
+    }
+
+
     /**
      * @OA\Get(
      *      path="/api/text-locations",
@@ -17,26 +23,6 @@ class TextLocationController extends Controller
      *      tags={"LocationHistory", "Text Messages"},
      *      summary="Get a list of saved location information linked to text messages",
      *      description="Returns text location history of a DialoguePerson",
-     *      @OA\Parameter(
-     *         name="person-id",
-     *         in="query",
-     *         description="Person id required for identification",
-     *         required=true,
-     *         explode=true,
-     *         @OA\Schema(
-     *             type="integer"
-     *         )
-     *     ),
-     *      @OA\Parameter(
-     *         name="timestamp",
-     *         in="query",
-     *         description="Timestamp for querying later history information",
-     *         required=false,
-     *         explode=true,
-     *         @OA\Schema(
-     *             type="integer"
-     *         )
-     *     ),
      *     @OA\Parameter(
      *         name="limit",
      *         in="query",
@@ -59,11 +45,8 @@ class TextLocationController extends Controller
      *
      * Returns a bunch of LocationHistories
      */
-    public function index(TextLocationRequest $request)
+    public function index()
     {
-        return TextLocationResource::collection(TextLocation::where('person_id',
-                                                $request->input('person-id'))
-                                                ->where('user_id', Auth::id())
-                                                ->paginate());
+        return TextLocationResource::collection($this->textLocationService->index());
     }
 }

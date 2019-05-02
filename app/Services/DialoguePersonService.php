@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\DialoguePerson;
 use App\Repositories\DialoguePersonRepository;
+use Exception;
 use Illuminate\Http\Request;
 
 class DialoguePersonService
@@ -42,5 +44,15 @@ class DialoguePersonService
     public function delete($id)
     {
         return $this->dialoguePerson->delete($id);
+    }
+
+    /**
+     * @param $dialoguePerson
+     * @return array
+     * @throws Exception
+     */
+    public function favoriteHours(DialoguePerson $dialoguePerson)
+    {
+        return $this->dialoguePerson->favoriteMessageHours($dialoguePerson);
     }
 }

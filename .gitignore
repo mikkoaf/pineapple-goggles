@@ -3,8 +3,9 @@
 /public/js/app.js
 /public/css/app.css
 /public/storage
-/storage/*.key
 /storage/api-docs
+/storage/report
+/storage/*
 /vendor
 .env
 .phpunit.result.cache
