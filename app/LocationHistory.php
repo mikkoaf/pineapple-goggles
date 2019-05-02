@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Class LocationHistory 
@@ -28,31 +30,31 @@ class LocationHistory extends Model
     /**
      * Relationship to user
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function user()
+    public function user(): BelongsTo
     {
-        return $this->belongsTo('App\User', 'foreign_key', 'other_key');
+        return $this->belongsTo(User::class);
     }
 
     /**
      * Relationship to dialoguePerson
      *
-     * @return void
+     * @return BelongsTo
      */
-    public function dialoguePerson()
+    public function dialoguePerson(): BelongsTo
     {
-        return $this->belongsTo('App\DialoguePerson');
+        return $this->belongsTo(DialoguePerson::class);
     }
 
     /**
      * TODO: update to hasMany -relationship
      *
-     * @return void
+     * @return HasOne
      */
-    public function textLocation()
+    public function textLocation(): HasOne
     {
-        return $this->hasOne('App\TextLocation');
+        return $this->hasOne(TextLocation::class);
     }
 
 }

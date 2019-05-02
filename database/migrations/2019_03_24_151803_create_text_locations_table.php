@@ -17,8 +17,8 @@ class CreateTextLocationsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('person_id');
-            $table->foreign('person_id')->references('id')->on('dialogue_people')->onDelete('cascade');
+            $table->unsignedBigInteger('dialogue_person_id');
+            $table->foreign('dialogue_person_id')->references('id')->on('dialogue_people')->onDelete('cascade');
             $table->unsignedBigInteger('text_message_id');
             $table->foreign('text_message_id')->references('id')->on('text_messages')->onDelete('cascade');
             $table->unsignedBigInteger('location_history_id');

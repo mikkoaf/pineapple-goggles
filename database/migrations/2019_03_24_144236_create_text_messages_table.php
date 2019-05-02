@@ -21,11 +21,13 @@ class CreateTextMessagesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('person_id');
-            $table->foreign('person_id')->references('id')->on('dialogue_people')->onDelete('cascade');
+            $table->unsignedBigInteger('dialogue_person_id');
+            $table->foreign('dialogue_person_id')->references('id')->on('dialogue_people')->onDelete('cascade');
             $table->string('person_name');
             $table->longText('message');
             $table->dateTime('message_sent');
+            $table->date('date');
+            $table->string('time');
             $table->enum('connected', ['false', 'true', 'tried']); // propably not needed
             $table->timestamps();
         });

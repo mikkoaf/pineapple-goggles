@@ -9,6 +9,7 @@ use App\Http\Resources\TextMessageResource;
 use App\TextMessage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 
 class TextMessageController extends Controller
 {
@@ -63,5 +64,59 @@ class TextMessageController extends Controller
                                                 $request->input('person_id'))
                                                 ->where('user_id', Auth::id())
                                                 ->paginate());
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @return Response
+     */
+    public function store(): \Illuminate\Http\Response
+    {
+        return Response::make('',420);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function edit($id): \Illuminate\Http\Response
+    {
+        return Response::make('',420);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update($id): \Illuminate\Http\Response
+    {
+        return Response::make('',420);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy(): \Illuminate\Http\Response
+    {
+        return Response::make('',420);
     }
 }

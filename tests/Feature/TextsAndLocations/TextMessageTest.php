@@ -3,8 +3,6 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class TextMessageTest extends TestCase
 {
@@ -20,5 +18,31 @@ class TextMessageTest extends TestCase
         $response = $this->get('/');
 
         $response->assertStatus(200);
+    }
+
+    /**
+     * TODO:
+     */
+    public function testUserCanRequestTextsHasNone()
+    {
+        $this->assertTrue(true);
+        // Authenticate a user
+        /*
+        $this->authenticateUser();
+        $this->get('/api/texts')
+            ->assertStatus(200)
+            ->assertJsonStructure([
+
+            ]);
+        */
+        // The following are quite common events, something to do with
+        // model builders?
+
+        // Add texts dialogue people for user
+
+        // Add texts to dialogue people
+
+        //
+
     }
 }
