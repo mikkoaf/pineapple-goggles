@@ -3,8 +3,6 @@
 // basic route to get pineapples
 use Illuminate\Support\Facades\Route;
 
-Route::get('/ananas', 'AnanasController@show');
-
 // TODO: use passport for use authentication instead
 Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@create');
