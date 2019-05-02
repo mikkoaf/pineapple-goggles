@@ -5,6 +5,7 @@ use App\DialoguePerson;
 use App\Repositories\DialoguePersonRepository;
 use App\User;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Tests\ModelBuilders\DialoguePersonBuilder;
 use Tests\ModelBuilders\UserBuilder;
 use Tests\TestCase;
@@ -36,6 +37,23 @@ class DialoguePersonTest extends TestCase
         $this->assertInstanceOf(DialoguePerson::class, $dialoguePerson);
         $this->assertEquals($data['person_name'], $dialoguePerson->person_name);
         $this->assertEquals($data['user_id'], $dialoguePerson->user_id);
+    }
+
+    public function testCanFetchAllDialoguePersons(): void
+    {
+        $user = factory(User::class)->create();
+        $dialoguePerson1 = factory(DialoguePerson::class)->create([
+            'user_id' => $user->id,
+        ]);
+        $dialoguePerson2 = factory(DialoguePerson::class)->create([
+            'user_id' => $user->id,
+        ]);
+
+        $dialoguePersonRepo = new DialoguePersonRepository(new DialoguePerson());
+        $dialoguePersonCollection = $dialoguePersonRepo->all();
+
+        $this->assertInstanceOf(Collection::class, $dialoguePersonCollection);
+        $this->assertIsIterable($dialoguePersonCollection);
     }
 
     /**
@@ -87,6 +105,9 @@ class DialoguePersonTest extends TestCase
         $this->assertTrue($deleted);
     }
 
+    /**
+     * @throws Exception
+     */
     public function testCanFindFavoriteMessageHours(): void
     {
         $user = factory(User::class)->create();
@@ -97,5 +118,20 @@ class DialoguePersonTest extends TestCase
         $this->assertIsArray($favoriteHoursArray);
         $this->assertCount(48,$favoriteHoursArray);
         $this->assertArrayHasKey('12.00', $favoriteHoursArray);
+    }
+
+    /**
+     * Could be a performance intensive test as fakers tend to create completely random dates.
+     *
+     * @throws Exception
+     */
+    public function testCanCalculateMessagesHistory(): void
+    {
+        $user = factory(User::class)->create();
+        $dialoguePerson = $this->aDialoguePersonWithFullHistory([], $user);
+        $dialoguePersonRepo = new DialoguePersonRepository(new DialoguePerson());
+        $messagesHistory = $dialoguePersonRepo->messagesHistory($dialoguePerson);
+
+        $this->assertIsArray($messagesHistory);
     }
 }
