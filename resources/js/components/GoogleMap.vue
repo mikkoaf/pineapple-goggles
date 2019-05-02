@@ -83,11 +83,30 @@ export default {
           lat: parseFloat(locationElement.latitude),
           lng: parseFloat(locationElement.longitude),
         };
+        const label = {
+            text: String(locationElement.person_id),
+            color: 'white',
+            fontWeight: 'bold',
+        }
         const marker = {
           position: location,
+          label: label
           // icon: locationElement.image
         }
         this.markers.push(marker);
+        // TODO: Following logic is not related to adding.
+        $(document).on('hover', '#'+locationElement.id, function() {
+            console.log('oo');
+            infowindow.open(this, marker);
+            setTimeout(function () { infowindow.close(); }, 5000);
+        });
+        let infowindow = new google.maps.InfoWindow({
+                content     : String(locationElement.id),
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open( map, marker );
+        });
+        // TODO
     },
     geolocate: function() {
       navigator.geolocation.getCurrentPosition(position => {

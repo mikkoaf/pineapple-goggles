@@ -57,7 +57,7 @@ class RegisterRequest  extends ApiRequest
              *      description="User email",
              * )
              */
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users',
 
             /**
              * @OA\Property(
