@@ -28,11 +28,8 @@ trait DialoguePersonBuilder
         User $user = null
     ): DialoguePerson
     {
+        $overrides['user_id'] = $user->id;
         $person = factory(DialoguePerson::class)->create($overrides);
-        if($user)
-        {
-            $person->user()->associate($user);
-        }
 
         // TODO: clean up,
         // Use associations?

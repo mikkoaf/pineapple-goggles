@@ -24,9 +24,10 @@ class DialoguePersonTest extends TestCase
 
     public function testCanCreateDialoguePerson(): void
     {
+        $user = factory(User::class)->create();
         $data = [
             'person_name' =>  'Lari',
-            'user_id' => 1,
+            'user_id' => $user->id,
         ];
 
         $dialoguePersonRepo = new DialoguePersonRepository(new DialoguePerson());
@@ -60,8 +61,9 @@ class DialoguePersonTest extends TestCase
      */
     public function testCanUpdateDialoguePerson(): void
     {
+        $user = factory(User::class)->create();
         $dialoguePerson = factory(DialoguePerson::class)->create([
-            'user_id' => 1,
+            'user_id' => $user->id,
         ]);
         $data = [
             'person_name' => 'Lari',
@@ -75,8 +77,9 @@ class DialoguePersonTest extends TestCase
 
     public function testCanDeleteDialoguePerson(): void
     {
+        $user = factory(User::class)->create();
         $dialoguePerson = factory(DialoguePerson::class)->create([
-            'user_id' => 1,
+            'user_id' => $user->id,
         ]);
         $dialoguePersonRepo = new DialoguePersonRepository(new DialoguePerson());
         $deleted = $dialoguePersonRepo->delete($dialoguePerson->id);
@@ -86,12 +89,13 @@ class DialoguePersonTest extends TestCase
 
     public function testCanFindFavoriteMessageHours(): void
     {
-        $dialoguePerson = $this->aDialoguePersonWithFullHistory();
+        $user = factory(User::class)->create();
+        $dialoguePerson = $this->aDialoguePersonWithFullHistory([], $user);
         $dialoguePersonRepo = new DialoguePersonRepository(new DialoguePerson());
-        $favoriteHoursArray = $dialoguePersonRepo->favoriteMessageHours($dialoguePerson->id);
+        $favoriteHoursArray = $dialoguePersonRepo->favoriteMessageHours($dialoguePerson);
 
         $this->assertIsArray($favoriteHoursArray);
-        $this->assertCount(24,$favoriteHoursArray);
-        $this->assertArrayHasKey('12.00', (array)$favoriteHoursArray[24]);
+        $this->assertCount(48,$favoriteHoursArray);
+        $this->assertArrayHasKey('12.00', $favoriteHoursArray);
     }
 }
