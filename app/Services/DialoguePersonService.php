@@ -55,4 +55,9 @@ class DialoguePersonService
     {
         return $this->dialoguePerson->favoriteMessageHours($dialoguePerson);
     }
+
+    public function messagesHistory(DialoguePerson $dialoguePerson)
+    {
+        return $this->dialoguePerson->messagesHistory($dialoguePerson);
+    }
 }

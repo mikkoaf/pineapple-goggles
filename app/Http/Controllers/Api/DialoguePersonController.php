@@ -129,4 +129,9 @@ class DialoguePersonController extends Controller
     {
         return $this->dialoguePersonService->favoriteHours($dialoguePerson);
     }
+
+    public function messagesHistory(DialoguePerson $dialoguePerson)
+    {
+        return $this->dialoguePersonService->messagesHistory($dialoguePerson);
+    }
 }

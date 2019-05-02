@@ -4,7 +4,9 @@ namespace App\Repositories;
 
 use App\DialoguePerson;
 use App\Http\Traits\TimeMappingTrait;
+use App\TextMessage;
 use DateInterval;
+use DatePeriod;
 use DateTime;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
@@ -55,20 +57,6 @@ class DialoguePersonRepository
     }
 
     /**
-     * TODO: rights management not a repository task
-     *
-     * @param $user_id
-     * @param $person_name
-     * @return mixed
-     */
-    public function findPerson($user_id, $person_name)
-    {
-        return $this->dialoguePerson::where('person_name', $person_name)
-                                    ->where('user_id', $user_id)
-                                    ->first();
-    }
-
-    /**
      * @param $id
      * @param array $attributes
      * @return mixed
@@ -109,6 +97,30 @@ class DialoguePersonRepository
                     ]
                 )
                 ->count();
+        }
+        return $array;
+    }
+
+    /**
+     * @param DialoguePerson $dialoguePerson
+     * @return array
+     */
+    public function messagesHistory(DialoguePerson $dialoguePerson): array
+    {
+        $array = [];
+        // find the first and last messaging day for the person
+        $oldestMessage = TextMessage::where('dialogue_person_id', $dialoguePerson->id)->orderby('date', 'ASC')->firstOrFail();
+        $latestMessage = TextMessage::where('dialogue_person_id', $dialoguePerson->id)->orderby('date', 'DESC')->firstOrFail();
+        try {
+            $period = new DatePeriod(
+                new DateTime($oldestMessage->date),
+                new DateInterval('P1D'),
+                new DateTime($latestMessage->date)
+            );
+        } catch (Exception $e) {
+        }
+        foreach ($period as $day) {
+            $array[$day->format('d.m.Y')] = TextMessage::where('dialogue_person_id', $dialoguePerson->id)->where('date', $day)->count();
         }
         return $array;
     }

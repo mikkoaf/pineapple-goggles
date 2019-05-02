@@ -61,6 +61,8 @@ Route::post('register', 'UserController@create');
 
         // Messages to time of day...
         Route::get('{dialoguePerson}/favorite/hours', 'Api\DialoguePersonController@favoriteHours');
+        // Daily messaging
+        Route::get('{dialoguePerson}/messages/history', 'Api\DialoguePersonController@messagesHistory');
     });
 //});
 
