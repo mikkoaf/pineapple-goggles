@@ -54,4 +54,44 @@ class DialoguePersonTest extends TestCase
         $this->assertEquals($found->person_name, $dialoguePerson->person_name);
         $this->assertEquals($found->user_id, $dialoguePerson->user_id);
     }
+
+    /**
+     *
+     */
+    public function testCanUpdateDialoguePerson(): void
+    {
+        $dialoguePerson = factory(DialoguePerson::class)->create([
+            'user_id' => 1,
+        ]);
+        $data = [
+            'person_name' => 'Lari',
+        ];
+        $dialoguePersonRepo = new DialoguePersonRepository(new DialoguePerson());
+        $updated = $dialoguePersonRepo->update($dialoguePerson->id, $data);
+
+        $this->assertTrue($updated);
+        //$this->assertEquals($data['person_name'], $dialoguePerson->person_name);
+    }
+
+    public function testCanDeleteDialoguePerson(): void
+    {
+        $dialoguePerson = factory(DialoguePerson::class)->create([
+            'user_id' => 1,
+        ]);
+        $dialoguePersonRepo = new DialoguePersonRepository(new DialoguePerson());
+        $deleted = $dialoguePersonRepo->delete($dialoguePerson->id);
+
+        $this->assertTrue($deleted);
+    }
+
+    public function testCanFindFavoriteMessageHours(): void
+    {
+        $dialoguePerson = $this->aDialoguePersonWithFullHistory();
+        $dialoguePersonRepo = new DialoguePersonRepository(new DialoguePerson());
+        $favoriteHoursArray = $dialoguePersonRepo->favoriteMessageHours($dialoguePerson->id);
+
+        $this->assertIsArray($favoriteHoursArray);
+        $this->assertCount(24,$favoriteHoursArray);
+        $this->assertArrayHasKey('12.00', (array)$favoriteHoursArray[24]);
+    }
 }
