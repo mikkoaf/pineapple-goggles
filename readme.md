@@ -9,6 +9,16 @@ Faculty of Communication Sciences
 
 Idea is to link text messages with Google location history.
 
+### Running project
+```
+cp .env.example .env 
+```
+To run the Laravel-backend you can use [Homestead](https://laravel.com/docs/5.8/homestead).
+Remember to set the database IP address.
+
+Frontend runs on Vue. Install dependencies `npm install`.
+
+
 [TODO](docs/todolist.md)
 
 [Project documentation](docs/readme.md)
