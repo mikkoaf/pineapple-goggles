@@ -38,7 +38,11 @@
                 ];
                 axios.get('/api/text-locations')
                 .then(function (response) {
-                    localStorage.textlog = JSON.stringify(response.data.data);
+
+                    store.textlocation.commit({
+                                    type: 'setTextLocations',
+                                    array: JSON.stringify(response.data.data)
+                                });
                 }.bind(this))
                 .catch(function (error) {
 
