@@ -35,6 +35,7 @@
         "eco": "^1.1.0-rc-3",
         "ect": "^0.5.9",
         "ejs": "^2.6.1",
+        "es6-promise": "^4.2.6",
         "fs": "0.0.1-security",
         "haml-coffee": "^1.14.1",
         "hamlet": "^0.3.3",
