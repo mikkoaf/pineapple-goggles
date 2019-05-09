@@ -14,3 +14,4 @@ const store = new Vuex.Store({
 
 export default store
 
+store.dispatch('textlocation/init');
