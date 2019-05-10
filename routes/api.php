@@ -43,6 +43,11 @@ Route::post('register', 'UserController@create');
         Route::get('/', 'Api\LocationHistoryController@index');
     });
 
+    // General statistics
+
+    Route::get('hours', 'Api\StatisticsController@favoriteHours');
+    Route::get('history', 'Api\StatisticsController@messagesHistory');
+    Route::get('weekdays', 'Api\StatisticsController@messagesHistory');
     // Accessing texts
 
     Route::resource('texts', 'Api\TextMessageController');

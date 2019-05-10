@@ -80,14 +80,25 @@ class DialoguePersonRepository
      * @return array
      * @throws Exception
      */
-    public function favoriteMessageHours(DialoguePerson $dialoguePerson): array
+    public function favoriteMessageHours(DialoguePerson $dialoguePerson = null): array
     {
         $array = [];
-        Log::info($dialoguePerson->person_name);
         foreach ($this->halfHourTimes() as $time) {
-            $array[$time] = $dialoguePerson
-                ->textMessages
-                ->whereBetween(
+            if($dialoguePerson !== null) {
+                $array[$time] = $dialoguePerson
+                    ->textMessages
+                    ->whereBetween(
+                        'time',
+                        [
+                            $time,
+                            DateTime::createFromFormat('H.i', $time)
+                                ->add(new DateInterval('PT30M'))
+                                ->format('H.i')
+                        ]
+                    )
+                    ->count();
+            } else {
+                TextMessage::whereBetween(
                     'time',
                     [
                         $time,
@@ -96,7 +107,8 @@ class DialoguePersonRepository
                             ->format('H.i')
                     ]
                 )
-                ->count();
+                    ->count();
+            }
         }
         return $array;
     }
@@ -105,12 +117,19 @@ class DialoguePersonRepository
      * @param DialoguePerson $dialoguePerson
      * @return array
      */
-    public function messagesHistory(DialoguePerson $dialoguePerson): array
+    public function messagesHistory(DialoguePerson $dialoguePerson = null): array
     {
         $array = [];
         // find the first and last messaging day for the person
-        $oldestMessage = TextMessage::where('dialogue_person_id', $dialoguePerson->id)->orderby('date', 'ASC')->firstOrFail();
-        $latestMessage = TextMessage::where('dialogue_person_id', $dialoguePerson->id)->orderby('date', 'DESC')->firstOrFail();
+        if ($dialoguePerson !== null){
+            $oldestMessage = TextMessage::where('dialogue_person_id', $dialoguePerson->id);
+            $latestMessage = TextMessage::where('dialogue_person_id', $dialoguePerson->id);
+        } else {
+            $oldestMessage = TextMessage::whereNotNull('dialogue_person_id');
+            $latestMessage = TextMessage::whereNotNull('dialogue_person_id');
+        }
+        $oldestMessage = $oldestMessage->orderby('date', 'ASC')->firstOrFail();
+        $latestMessage = $latestMessage->orderby('date', 'DESC')->firstOrFail();
         try {
             $period = new DatePeriod(
                 new DateTime($oldestMessage->date),
@@ -120,7 +139,11 @@ class DialoguePersonRepository
         } catch (Exception $e) {
         }
         foreach ($period as $day) {
-            $array[$day->format('d.m.Y')] = TextMessage::where('dialogue_person_id', $dialoguePerson->id)->where('date', $day)->count();
+            if ($dialoguePerson !== null) {
+                $array[$day->format('d.m.Y')] = TextMessage::where('dialogue_person_id', $dialoguePerson->id)->where('date', $day)->count();
+            } else {
+                $array[$day->format('d.m.Y')] = TextMessage::where('date', $day)->count();
+            }
         }
         return $array;
     }

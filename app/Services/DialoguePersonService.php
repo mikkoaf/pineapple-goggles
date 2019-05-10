@@ -51,12 +51,12 @@ class DialoguePersonService
      * @return array
      * @throws Exception
      */
-    public function favoriteHours(DialoguePerson $dialoguePerson)
+    public function favoriteHours(DialoguePerson $dialoguePerson = null)
     {
         return $this->dialoguePerson->favoriteMessageHours($dialoguePerson);
     }
 
-    public function messagesHistory(DialoguePerson $dialoguePerson)
+    public function messagesHistory(DialoguePerson $dialoguePerson = null)
     {
         return $this->dialoguePerson->messagesHistory($dialoguePerson);
     }
