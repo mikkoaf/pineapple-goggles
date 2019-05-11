@@ -5,10 +5,17 @@ const state = {
     hours: [],
     weekdays: [],
     texthistory: [],
+    texts : [],
+    ready: false,
 };
 
 const getters = {
-    allTextLocations: state => state.textlocations
+    allTextLocations: state => { return state.textlocations },
+    allHours: state => { return  state.hours },
+    allWeekdays: state => { return state.weekdays },
+    allHistory: state => { return state.texthistory },
+    allTexts: state => { return state.texts },
+    getReady: state => { return state.ready }
 };
 
 const mutations = {
@@ -24,6 +31,12 @@ const mutations = {
     },
     setTextHistory: (state, array) => {
         state.texthistory = array;
+    },
+    setTexts: (state, array) => {
+        state.texts = array;
+    },
+    setReady: (state) => {
+        state.ready = true;
     }
 };
 
@@ -39,7 +52,11 @@ const getTextData = commit => {
     });
     api.get('history').then(({ data }) => {
         commit('setTextHistory', data)
-    })
+    });
+    api.get('texts').then(({ data }) => {
+        commit('setTexts', data)
+    });
+    commit('setReady')
 
 };
 
