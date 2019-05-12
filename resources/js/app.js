@@ -28,6 +28,11 @@ Vue.component(
   require('./components/TextLog.vue').default 
 );
 
+Vue.component(
+    'd3graph',
+    require('./components/D3Graph.vue').default
+);
+
 Vue.use(VueRouter);
 
 Vue.use(VueGoogleMaps, {
