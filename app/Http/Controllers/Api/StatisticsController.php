@@ -17,7 +17,7 @@ class StatisticsController extends Controller
 
     public function favoriteHours(): array
     {
-        return $this->dialoguePersonService->favoriteHours();
+        return $this->dialoguePersonService->favoriteHours(null);
     }
 
     public function messagesHistory()

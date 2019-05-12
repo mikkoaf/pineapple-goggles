@@ -10,6 +10,7 @@ use DatePeriod;
 use DateTime;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class DialoguePersonRepository
@@ -98,7 +99,9 @@ class DialoguePersonRepository
                     )
                     ->count();
             } else {
-                TextMessage::whereBetween(
+                $stamp = [];
+                $stamp['time'] = $time;
+                $stamp['count'] = DB::table('text_messages')->whereBetween(
                     'time',
                     [
                         $time,
@@ -108,6 +111,7 @@ class DialoguePersonRepository
                     ]
                 )
                     ->count();
+                $array[] = $stamp;
             }
         }
         return $array;

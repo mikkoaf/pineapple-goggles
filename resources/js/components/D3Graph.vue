@@ -12,7 +12,7 @@
 
     export default {
         name: 'D3Graph',
-        data: function (  ) { //}, texthistory) {
+        data: function ( hours ) { //}, texthistory) {
             return {
                 hoursChart: {
                     chartType: 'barChart',
@@ -20,7 +20,8 @@
                     title: 'Favorite Hours',
                     width: 300,
                     height: 200,
-                    data: [2, 3, 4],
+                    metric: 'count',
+                    data: [],
                 },
                 /*
                 texthistoryChart: {
@@ -45,12 +46,19 @@
             ),
             ...mapGetters("textlocation",
                 ["allHours"]
-            )
+            ),
+
         },
 
         methods: {
 
-        }
+        },
+        watch: {
+            hours: function ( val ) {
+                this.hoursChart.data = val
+            }
+
+        },
     }
 
 /* OLD CODE
