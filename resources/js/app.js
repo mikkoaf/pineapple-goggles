@@ -7,6 +7,9 @@ import store from './store';
 import MainApp from './components/MainApp.vue';
 import * as VueGoogleMaps from "vue2-google-maps";
 import {routes} from './routes';
+import Chart from './v-chart-plugin.js'
+
+Vue.use(Chart);
 
 Vue.component(
   'passport-clients',

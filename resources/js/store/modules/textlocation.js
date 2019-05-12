@@ -2,7 +2,7 @@ import {api} from '../../api';
 
 const state = {
     textlocations: [],
-    hours: [],
+    hours: [''],
     weekdays: [],
     texthistory: [],
     texts : [],
@@ -21,7 +21,6 @@ const getters = {
 const mutations = {
     setTextLocations: ( state, array) =>{
         state.textlocations = array;
-        localStorage.setItem('textlog', array)
     },
     setHours: (state, array) => {
         state.hours = array;

@@ -1,40 +1,55 @@
 <template>
     <div>
-        <ul id="hours" v-for="t in hours" :key="t.value">
-            {{t}}
-        </ul>
-        <ul id="texthistory" v-for="t in texthistory" :key="t.value">
-            {{t}}
-        </ul>
+        <v-chart v-bind:chartData="hoursChart"></v-chart>
+        {{allHours}}
     </div>
 </template>
 
 <script>
     import TextMessage from './TextMessage'
-    import { mapState } from 'vuex';
+    import { mapState, mapGetters } from 'vuex';
+    import Chart from '../v-chart-plugin.js'
 
     export default {
-        data: function () {
+        name: 'D3Graph',
+        data: function (  ) { //}, texthistory) {
             return {
-                listAllTexts: [],
+                hoursChart: {
+                    chartType: 'barChart',
+                    selector: 'chart',
+                    title: 'Favorite Hours',
+                    width: 300,
+                    height: 200,
+                    data: [2, 3, 4],
+                },
+                /*
+                texthistoryChart: {
+                    chartType: 'barChart',
+                    selector: 'chart',
+                    title: 'Text History',
+                    width: 300,
+                    height: 200,
+                    data: texthistory
+                }
+                */
             }
 
         },
-
         components: {
-            TextMessage
+
         },
 
         computed: {
             ...mapState("textlocation",
                 ["hours", "texthistory"]
+            ),
+            ...mapGetters("textlocation",
+                ["allHours"]
             )
         },
 
         methods: {
-            updateAllTexts: async function (getters) {
-                return getters.allTexts
-            }
+
         }
     }
 
