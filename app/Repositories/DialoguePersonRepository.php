@@ -123,7 +123,8 @@ class DialoguePersonRepository
      */
     public function messagesHistory(DialoguePerson $dialoguePerson = null): array
     {
-        $array = [];
+        $retArray = [];
+
         // find the first and last messaging day for the person
         if ($dialoguePerson !== null){
             $oldestMessage = TextMessage::where('dialogue_person_id', $dialoguePerson->id);
@@ -143,12 +144,16 @@ class DialoguePersonRepository
         } catch (Exception $e) {
         }
         foreach ($period as $day) {
+            $array = [];
             if ($dialoguePerson !== null) {
-                $array[$day->format('d.m.Y')] = TextMessage::where('dialogue_person_id', $dialoguePerson->id)->where('date', $day)->count();
+                $array['day'] = $day->format('d.m.Y');
+                $array['count'] = TextMessage::where('dialogue_person_id', $dialoguePerson->id)->where('date', $day)->count();
             } else {
-                $array[$day->format('d.m.Y')] = TextMessage::where('date', $day)->count();
+                $array['day'] = $day->format('d.m.Y');
+                $array['count'] = TextMessage::where('date', $day)->count();
             }
+            $retArray[] = $array;
         }
-        return $array;
+        return $retArray;
     }
 }
