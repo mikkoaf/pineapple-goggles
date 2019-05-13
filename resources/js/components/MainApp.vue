@@ -5,7 +5,10 @@
                 <router-view></router-view>
             </div>
             <div>
-                <d3graph />
+                <hoursChart />
+            </div>
+            <div>
+                <HistoryChart />
             </div>
             <div class="row">
                 <google-map />
@@ -20,12 +23,13 @@
 <script>
     import TextLog from "./TextLog";
     import GoogleMap from "./GoogleMap";
-    import D3Graph from "./D3Graph";
-    /* import DataLoader from "./Dataloader"; */
+    import hoursChart from "./hoursChart";
+    import HistoryChart from "./HistoryChart";
+
     export default {
         name: 'app',
         components:{
-           /* DataLoader, */ GoogleMap, TextLog, D3Graph,
+           GoogleMap, TextLog, hoursChart, HistoryChart
         },
         mounted() {
             console.log('Component mounted.')

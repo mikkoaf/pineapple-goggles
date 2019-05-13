@@ -33,7 +33,7 @@ Vue.component(
 
 Vue.component(
     'd3graph',
-    require('./components/D3Graph.vue').default
+    require('./components/hoursChart.vue').default
 );
 
 Vue.use(VueRouter);
