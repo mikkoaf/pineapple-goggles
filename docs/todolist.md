@@ -1,5 +1,14 @@
 # TODO:
 
+component:
+namespacedly list all day texts
+show these as a graph
+
+component:
+list texting hours
+show these as a graph
+
+
 Visualizations:
 hover effects:
 - add ID to locations and texts (linking)

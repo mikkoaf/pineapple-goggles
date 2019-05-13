@@ -1,11 +1,15 @@
 require('./bootstrap');
+import 'es6-promise/auto'
+
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-//import VueLoader from 'vue-loader';
-import Vuex from 'vuex';
+import store from './store';
 import MainApp from './components/MainApp.vue';
 import * as VueGoogleMaps from "vue2-google-maps";
 import {routes} from './routes';
+import Chart from './v-chart-plugin.js'
+
+Vue.use(Chart);
 
 Vue.component(
   'passport-clients',
@@ -26,14 +30,14 @@ Vue.component(
   'textlog',
   require('./components/TextLog.vue').default 
 );
-/*
+
 Vue.component(
-  'dataloader',
-  require('.components/DataLoader.vue').default
+    'd3graph',
+    require('./components/hoursChart.vue').default
 );
-*/
+
 Vue.use(VueRouter);
-Vue.use(Vuex);
+
 Vue.use(VueGoogleMaps, {
     load: {
       key: "REPLACE-THIS-WITH-YOUR-KEY-FROM-ABOVE",
@@ -49,9 +53,10 @@ const router = new VueRouter({
 window.addEventListener('load', function () {
     const app = new Vue({
         el: '#app',
+        store,
         router,
         components: { MainApp }
 
     });
-})
+});
 

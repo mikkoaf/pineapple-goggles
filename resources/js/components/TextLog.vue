@@ -1,58 +1,43 @@
 <template>
     <div>
         <h2>Textlog</h2>
-
-        <button @click="getTextLog">Log data</button>
-        <div class="textlog">Lorem</div>
-        <ul id="textLog">
-            <li v-for="t in test" :value="t.value" :key="t.value">
-                <div
-                    v-bind:id="t.text.id"
-                    @mouseover="hover = true"
-                    @mouseleave="hover = false"
-                    :class="{
-                        'highlight': hover,
-                        }
-                        ">
-                    {{t.text.message_sent}} - {{t.text.person_name}} - {{ t.text.message }}
-                </div>
-            </li>
+        <ul id="textLog" v-for="t in texts" :key="t.value">
+            <text-message
+                :date="t.date"
+                :time="t.time"
+                :person="t.person_name"
+                :message="t.message"
+            ></text-message>
         </ul>
     </div>
 </template>
 
 <script>
+    import TextMessage from './TextMessage'
+    import { mapState } from 'vuex';
+
     export default {
-        name: "TextLog",
         data: function () {
             return {
-                hover: false,
-                test: []
+                listAllTexts: [],
             }
+
         },
+
+        components: {
+            TextMessage
+        },
+
+        computed: {
+            ...mapState("textlocation",
+                ["texts"]
+            )
+        },
+
         methods: {
-            getTextLog: function () {
-                this.text = [
-                    'hi',
-                    'ho'
-                ];
-                axios.get('/api/text-locations')
-                .then(function (response) {
-                    localStorage.textlog = JSON.stringify(response.data.data);
-                }.bind(this))
-                .catch(function (error) {
-
-                });
-                if (localStorage.getItem('textlog')){
-                    try {
-                        this.test = JSON.parse(localStorage.getItem('textlog'))
-
-                    } catch(e) {
-                        localStorage.removeItem('textlog');
-                    }
-                }
-                this.$forceUpdate();
-            },
+            updateAllTexts: async function (getters) {
+                return getters.allTexts
+            }
         }
     }
 </script>

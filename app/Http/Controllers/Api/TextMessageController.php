@@ -58,12 +58,15 @@ class TextMessageController extends Controller
      *       
      *     )
      */
-    public function index(TextMessageRequest $request)
+    public function index( )//TextMessageRequest $request)
     {
+        return TextMessage::all();
+        /*
         return TextMessageResource::collection(TextMessage::where('person_id',
                                                 $request->input('person_id'))
                                                 ->where('user_id', Auth::id())
                                                 ->paginate());
+        */
     }
 
     /**

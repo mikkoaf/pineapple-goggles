@@ -4,6 +4,12 @@
             <div class="row">
                 <router-view></router-view>
             </div>
+            <div>
+                <hoursChart />
+            </div>
+            <div>
+                <HistoryChart />
+            </div>
             <div class="row">
                 <google-map />
             </div>
@@ -17,11 +23,13 @@
 <script>
     import TextLog from "./TextLog";
     import GoogleMap from "./GoogleMap";
-    /* import DataLoader from "./Dataloader"; */
+    import hoursChart from "./hoursChart";
+    import HistoryChart from "./HistoryChart";
+
     export default {
         name: 'app',
         components:{
-           /* DataLoader, */ GoogleMap, TextLog
+           GoogleMap, TextLog, hoursChart, HistoryChart
         },
         mounted() {
             console.log('Component mounted.')
