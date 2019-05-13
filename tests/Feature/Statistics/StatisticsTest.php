@@ -20,7 +20,7 @@ class StatisticsTest extends TestCase
      * A basic functional test example.
      *
      * @return void
-     */
+     *
     public function testHistoryRoute()
     {
     $response = $this->get('/api/history');
@@ -29,5 +29,6 @@ class StatisticsTest extends TestCase
 
      ]);
     }
+     * */
 
 }
