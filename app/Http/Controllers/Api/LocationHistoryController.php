@@ -12,6 +12,7 @@ class LocationHistoryController extends Controller
 {
     /**
      * @OA\Get(
+     *     deprecated=true,
      *      path="/api/locations",
      *      operationId="index",
      *      tags={"LocationHistory"},
@@ -62,12 +63,15 @@ class LocationHistoryController extends Controller
      * @return
      *
      */
-    public function index(LocationHistoryRequest $request)
+    public function index() //LocationHistoryRequest $request)
     {
+        return LocationHistoryResource::collection(LocationHistory::all());
+        /*
         return LocationHistoryResource::collection(LocationHistory::where(
             'person_id', $request->input('person_id')
             )
             ->where('user_id', Auth::id())
             ->paginate());
+        */
     }
 }

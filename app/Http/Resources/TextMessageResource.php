@@ -25,8 +25,10 @@ class TextMessageResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'person_id' => $this->person_id,
             'person_name' => $this->person_name,
             'message' => $this->message,
+            'message_sent' => $this->message_sent,
         ];
     }
 }
