@@ -6,6 +6,7 @@ const state = {
     weekdays: [],
     texthistory: [],
     texts : [],
+    locations: [],
     ready: false,
 };
 
@@ -15,6 +16,7 @@ const getters = {
     allWeekdays: state => { return state.weekdays },
     allHistory: state => { return state.texthistory },
     allTexts: state => { return state.texts },
+    allLocations: state => { return state.locations },
     getReady: state => { return state.ready }
 };
 
@@ -33,6 +35,9 @@ const mutations = {
     },
     setTexts: (state, array) => {
         state.texts = array;
+    },
+    setLocations: (state, array) => {
+        state.locations = array;
     },
     setReady: (state) => {
         state.ready = true;
@@ -54,6 +59,9 @@ const getTextData = commit => {
     });
     api.get('texts').then(({ data }) => {
         commit('setTexts', data)
+    });
+    api.get('locations').then(({ data }) => {
+        commit('setLocations', data.data)
     });
     commit('setReady')
 
