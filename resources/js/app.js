@@ -31,10 +31,6 @@ Vue.component(
   require('./components/TextLog.vue').default 
 );
 
-Vue.component(
-    'd3graph',
-    require('./components/hoursChart.vue').default
-);
 
 Vue.use(VueRouter);
 
