@@ -18,12 +18,6 @@
                     width: 1200,
                     height: 200,
                     metric: 'count',
-                    legends: {
-                        enabled: true,
-                        height: 25,
-                        width: 50,
-                    },
-                    label: true,
                     data: [],
                 },
             }
