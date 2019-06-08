@@ -9,30 +9,36 @@ use App\User;
 
 class UploadTest extends TestCase
 {
-    public function testUpload()
+    public function testUploadFailsToIncorrectMimeType(): void
     {
-        $this->assertTrue(true);
-        /*
         Storage::fake('local');
 
         //Given we have an authenticated user
         $this->actingAs(factory(User::class)->create());
 
         $this->json('POST', '/api/upload', [
-            'upload' => UploadedFile::fake()->image('upload.jpg')
-        ])->assertStatus(202);
+            'upload' => UploadedFile::fake()->image('upload.jpg'),
+        ])->assertStatus(422);
 
+    }
+
+    public function testAssertFileIsSaved()
+    {
+        Storage::fake('local');
+
+        //Given we have an authenticated user
+        $this->actingAs(factory(User::class)->create());
+
+        $this->json('POST', '/api/upload', [
+            'upload' => UploadedFile::fake()->create('textfile.txt',10),
+        ])->assertStatus(202);
         // Assert the file was stored...
-//        Storage::disk('local')->assertExists('upload.jpg');
+        Storage::disk('local')->assertExists('textfile.txt');
 
         // Assert a file does not exist...
         Storage::disk('local')->assertMissing('missing.jpg');
-
         // Assert that the upload has been recorded
-        $this->assertDatabaseHas(
-            'uploads',
-            [ 'filename' => 'upload.jpg' ],
-            'sqlite');
-        */
+        $this->assertDatabaseHas('uploads', ['filename' => 'textfile.txt']);
     }
+
 }

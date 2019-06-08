@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\UploadRequest;
 use App\Jobs\ParseTextLog;
 use http\Env\Response;
 use Illuminate\Http\Request;
@@ -18,9 +19,9 @@ class UploadController extends Controller
      * @OA\Post(
      *      path="/api/upload",
      *      tags={"File upload"},
-     *      summary="Upload files. Require authentication",
+     *      summary="Upload files. Requires authentication",
      *      @OA\RequestBody(
-     *          description="A file containing locationdata or text messages",
+     *          description="A file containing locationdata or text messages. Allowed types are txt, csv and json",
      *          @OA\MediaType(
      *              mediaType="application/octet-stream",
      *              @OA\Schema(
@@ -41,12 +42,10 @@ class UploadController extends Controller
      *
      * stores files uploaded correctly to storage/app/public
      *
-     * TODO: Required mime: .txt
-     *
      * @param Request $request
      * @return Response
      */
-    public function upload(Request $request)
+    public function upload(UploadRequest $request)
     {
         $file = $request->file('upload');
         if (!empty($file)) {
