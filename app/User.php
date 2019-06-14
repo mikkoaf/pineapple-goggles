@@ -6,11 +6,13 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Webpatser\Uuid\Uuid;
+use App\Upload;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, Notifiable, LogsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -29,6 +31,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    protected static $logAttributes = ['*'];
+
+    protected static $logOnlyDirty = true;
+
+    protected static $submitEmptyLogs = false;
 
     /**
      * The attributes that should be cast to native types.
@@ -49,26 +57,26 @@ class User extends Authenticatable
 
     public function dialoguePeople()
     {
-        return $this->hasMany('App\DialoguePerson');
+        return $this->hasMany(DialoguePerson::class);
     }
 
     public function locationHistories()
     {
-        return $this->hasMany('App\LocationHistory');
+        return $this->hasMany(LocationHistory::class);
     }
 
     public function textMessages()
     {
-        return $this->hasMany('App\TextMessage');
+        return $this->hasMany(TextMessage::class);
     }
 
     public function textLocationRelations()
     {
-        return $this->hasMany('App\TextLocation');
+        return $this->hasMany(TextLocation::class);
     }
 
     public function uploads()
     {
-        return $this->hasMany('App\Uploads');
+        return $this->hasMany(Upload::class);
     }
 }
